@@ -19,6 +19,9 @@ set backspace=2
 set autoindent
 set smartindent
 
+" Make pasting reasonable
+set paste
+
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif

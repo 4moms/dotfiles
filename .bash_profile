@@ -8,3 +8,5 @@ shopt -s cdable_vars   # set so that no '$' is required when cd'ing
 function woman {
   man -t "grep" | sed -E 's/Times-Roman|Bold|Italic/Helvetica/g' | open -f -a /Applications/Preview.app/
 }
+
+alias mysql='/usr/local/mysql/bin/mysql -u root -p'
