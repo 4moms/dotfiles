@@ -87,6 +87,7 @@ autocmd BufWritePost *.css !test -f ~/csstidy/csslint.php && php ~/csstidy/cssli
 " get jslint from http://javascriptlint.com/
 autocmd BufWritePost *.js !test -f ~/jslint/jsl && ~/jslint/jsl -conf ~/jslint/jsl.default.conf -nologo -nosummary -process <afile>
 autocmd BufWritePost *.rb !ruby -c <afile>
+autocmd BufWritePost *.rake !ruby -c <afile>
 autocmd BufWritePost *.pp !puppet --parseonly <afile>
 autocmd BufWritePost *.erb !erb -x -T '-' <afile> | ruby -c 
 autocmd BufWritePost *.py !python -c "compile(open('<afile>').read(), '<afile>', 'exec')"
