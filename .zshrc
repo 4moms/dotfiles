@@ -4,6 +4,12 @@ sdict() { curl dict://dict.org/m:$1; }
 wp() { elinks -dump -no-numbering http://en.wikipedia.org/wiki/$1 | less; }
 kk() { kill -9 `ps -ef | grep $1 | awk '{print $2}'`; }
 
+function urlopen()
+{ 
+	open "http://$*" 
+}
+alias -s com=urlopen
+
 alias x=' history -c && rm -f ~/.zsh_history'
 
 function firefox() { command firefox "$@" & }
