@@ -111,13 +111,12 @@ set smartcase
 abbreviate wierd weird
 abbreviate restaraunt restaurant
 
-
 "set ls=2            " allways show status line
 "set ruler           " show the cursor position all the time
+set statusline=%F%m%r%h%w\ [TYPE=%Y]\ Column:%04v\ Line:\ %04l/%L(%p%%)
+set laststatus=2
 
 "au BufNewFile,BufRead  *.pls    set syntax=dosini
-
-
 
 if &term == "xterm-color"
   fixdel
@@ -129,8 +128,6 @@ endif
 " Correct indentation after opening a phpdocblock and automatic * on every
 " line
 set formatoptions=qroct
-
-
 
 " The completion dictionary is provided by Rasmus:
 " http://lerdorf.com/funclist.txt
