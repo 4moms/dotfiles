@@ -1,0 +1,3 @@
+# Disable Preview & Quicktime from using the Resume feature in Lion (Opening old files)
+defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
+defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool false
