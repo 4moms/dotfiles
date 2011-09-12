@@ -10,3 +10,4 @@ function woman {
 }
 
 alias mysql='/usr/local/mysql/bin/mysql -u root -p'
+alias count='wc -l'
