@@ -73,6 +73,11 @@ augroup END
 augroup Programming
 " clear auto commands for this group
 autocmd!
+autocmd BufWritePost *.js !test -f ~/jslint/jsl && ~/jslint/jsl -conf ~/jslint/jsl.default.conf -nologo -nosummary -process <afile>
+autocmd BufWritePost *.rb !ruby -c <afile>
+autocmd BufWritePost *.rake !ruby -c <afile>
+autocmd BufWritePost *.erb !erb -x -T '-' <afile> | ruby -c 
+autocmd BufWritePost *.py !python -c "compile(open('<afile>').read(), '<afile>', 'exec')"
 autocmd BufWritePost *.php !php -d display_errors=on -l <afile>
 autocmd BufWritePost *.inc !php -d display_errors=on -l <afile>
 autocmd BufWritePost *httpd*.conf !/etc/rc.d/init.d/httpd configtest
@@ -83,14 +88,9 @@ autocmd BufWritePost *.perl !perl -c <afile>
 autocmd BufWritePost *.xml !xmllint --noout <afile>
 autocmd BufWritePost *.xsl !xmllint --noout <afile>
 " get csstidy from http://csstidy.sourceforge.net/
-autocmd BufWritePost *.css !test -f ~/csstidy/csslint.php && php ~/csstidy/csslint.php <afile>
+" autocmd BufWritePost *.css !test -f ~/csstidy/csslint.php && php ~/csstidy/csslint.php <afile>
 " get jslint from http://javascriptlint.com/
-autocmd BufWritePost *.js !test -f ~/jslint/jsl && ~/jslint/jsl -conf ~/jslint/jsl.default.conf -nologo -nosummary -process <afile>
-autocmd BufWritePost *.rb !ruby -c <afile>
-autocmd BufWritePost *.rake !ruby -c <afile>
-autocmd BufWritePost *.pp !puppet --parseonly <afile>
-autocmd BufWritePost *.erb !erb -x -T '-' <afile> | ruby -c 
-autocmd BufWritePost *.py !python -c "compile(open('<afile>').read(), '<afile>', 'exec')"
+" autocmd BufWritePost *.pp !puppet --parseonly <afile>
 augroup en
 
 " Special settings for python
@@ -111,11 +111,10 @@ set smartcase
 abbreviate wierd weird
 abbreviate restaraunt restaurant
 
-"set ls=2            " allways show status line
-"set ruler           " show the cursor position all the time
 set statusline=%F%m%r%h%w\ [TYPE=%Y]\ Column:%04v\ Line:\ %04l/%L(%p%%)
 set laststatus=2
-
+hi StatusLine guifg=#CD5907 guibg=fg
+hi StatusLineNC guifg=#808080 guibg=#080808
 "au BufNewFile,BufRead  *.pls    set syntax=dosini
 
 if &term == "xterm-color"
@@ -166,3 +165,8 @@ set rnu
 :match Search /\%(\_^\s*\)\@<=\%(\%1v\|\%5v\|\%9v\)\s/
 
 nnoremap <F5> :GundoToggle<CR>
+set history=700
+
+" Highlights lines over 80 chars in length
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
