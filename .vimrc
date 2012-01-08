@@ -175,8 +175,11 @@ set rnu
 
 nnoremap <F5> :GundoToggle<CR>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> 0d1006a10439bf9fc6ac59404db83e2d39e5ddc0
 set history=700
 
 " Highlights lines over 80 chars in length
@@ -206,4 +209,7 @@ if v:version < '702'
 endif
 
 call pathogen#runtime_append_all_bundles()
+<<<<<<< HEAD
+>>>>>>> 0d1006a10439bf9fc6ac59404db83e2d39e5ddc0
+=======
 >>>>>>> 0d1006a10439bf9fc6ac59404db83e2d39e5ddc0
