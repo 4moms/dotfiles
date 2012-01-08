@@ -174,6 +174,7 @@ set rnu
 " runtime macros/matchit.vim
 
 nnoremap <F5> :GundoToggle<CR>
+
 set history=700
 
 " Highlights lines over 80 chars in length
