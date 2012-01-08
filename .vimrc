@@ -6,7 +6,7 @@ set nocompatible
 set background=dark
 colorscheme solarized
 
-" Tab settings
+" White space in Vim
 set tabstop=3
 set softtabstop=3
 set shiftwidth=3
@@ -21,6 +21,17 @@ set smartindent
 
 " Make pasting reasonable
 set paste
+
+" The Vim command line
+" ====================
+" - Make autocompletion smarter
+set wildmenu
+set wildmode=list:longest
+
+" The Vim status bar
+" ====================
+" - Show line information
+set ruler
 
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
@@ -73,6 +84,11 @@ augroup END
 augroup Programming
 " clear auto commands for this group
 autocmd!
+autocmd BufWritePost *.js !test -f ~/jslint/jsl && ~/jslint/jsl -conf ~/jslint/jsl.default.conf -nologo -nosummary -process <afile>
+autocmd BufWritePost *.rb !ruby -c <afile>
+autocmd BufWritePost *.rake !ruby -c <afile>
+autocmd BufWritePost *.erb !erb -x -T '-' <afile> | ruby -c 
+autocmd BufWritePost *.py !python -c "compile(open('<afile>').read(), '<afile>', 'exec')"
 autocmd BufWritePost *.php !php -d display_errors=on -l <afile>
 autocmd BufWritePost *.inc !php -d display_errors=on -l <afile>
 autocmd BufWritePost *httpd*.conf !/etc/rc.d/init.d/httpd configtest
@@ -83,14 +99,9 @@ autocmd BufWritePost *.perl !perl -c <afile>
 autocmd BufWritePost *.xml !xmllint --noout <afile>
 autocmd BufWritePost *.xsl !xmllint --noout <afile>
 " get csstidy from http://csstidy.sourceforge.net/
-autocmd BufWritePost *.css !test -f ~/csstidy/csslint.php && php ~/csstidy/csslint.php <afile>
+" autocmd BufWritePost *.css !test -f ~/csstidy/csslint.php && php ~/csstidy/csslint.php <afile>
 " get jslint from http://javascriptlint.com/
-autocmd BufWritePost *.js !test -f ~/jslint/jsl && ~/jslint/jsl -conf ~/jslint/jsl.default.conf -nologo -nosummary -process <afile>
-autocmd BufWritePost *.rb !ruby -c <afile>
-autocmd BufWritePost *.rake !ruby -c <afile>
-autocmd BufWritePost *.pp !puppet --parseonly <afile>
-autocmd BufWritePost *.erb !erb -x -T '-' <afile> | ruby -c 
-autocmd BufWritePost *.py !python -c "compile(open('<afile>').read(), '<afile>', 'exec')"
+" autocmd BufWritePost *.pp !puppet --parseonly <afile>
 augroup en
 
 " Special settings for python
@@ -99,6 +110,8 @@ autocmd BufRead *.py set expandtab
 " And for ruby
 autocmd BufRead *.rb set tabstop=2
 autocmd BufRead *.rb set expandtab
+autocmd BufRead *.rb set softtabstop=3
+autocmd BufRead *.rb set shiftwidth=3
 
 " enable filetype detection:
 filetype on
@@ -111,12 +124,6 @@ set smartcase
 abbreviate wierd weird
 abbreviate restaraunt restaurant
 
-"set ls=2            " allways show status line
-"set ruler           " show the cursor position all the time
-set statusline=%F%m%r%h%w\ [TYPE=%Y]\ Column:%04v\ Line:\ %04l/%L(%p%%)
-set laststatus=2
-
-"au BufNewFile,BufRead  *.pls    set syntax=dosini
 
 if &term == "xterm-color"
   fixdel
@@ -164,6 +171,35 @@ set complete-=k complete+=k
 
 set rnu
 :match Search /\%(\_^\s*\)\@<=\%(\%1v\|\%5v\|\%9v\)\s/
+" runtime macros/matchit.vim
 
 nnoremap <F5> :GundoToggle<CR>
+set history=700
 
+" Highlights lines over 80 chars in length
+" highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+" match OverLength /\%81v.\+/
+
+" Pathogen
+"call pathogen#infect()
+" To disable a plugin, add it's bundle name to the following list
+let g:pathogen_disabled = []
+
+" for some reason the csscolor plugin is very slow when run on the terminal
+" but not in GVim, so disable it if no GUI is running
+if !has('gui_running')
+    call add(g:pathogen_disabled, 'vim-css-color')
+endif
+
+" Gundo requires at least vim 7.3
+if v:version < '703' || !has('python')
+    call add(g:pathogen_disabled, 'gundo')
+endif
+
+if v:version < '702'
+    call add(g:pathogen_disabled, 'autocomplpop')
+    call add(g:pathogen_disabled, 'fuzzyfinder')
+    call add(g:pathogen_disabled, 'l9')
+endif
+
+call pathogen#runtime_append_all_bundles()
