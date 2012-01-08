@@ -166,3 +166,4 @@ set rnu
 :match Search /\%(\_^\s*\)\@<=\%(\%1v\|\%5v\|\%9v\)\s/
 
 nnoremap <F5> :GundoToggle<CR>
+
