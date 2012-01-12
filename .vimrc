@@ -3,6 +3,7 @@ hi CursorLine ctermbg=white ctermfg=NONE guibg=white guifg=none
 hi CursorColumn ctermbg=white ctermfg=NONE guibg=white guifg=none
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 set nocompatible
+set laststatus=2
 set background=dark
 colorscheme solarized
 
@@ -142,31 +143,6 @@ set dictionary-=~/phpfunclist.txt dictionary+=~/phpfunclist.txt
 " Use the dictionary completion
 set complete-=k complete+=k
 
-" {{{ Autocompletion using the TAB key
-
-" " This function determines, wether we are on the start of the line text (then tab indents) or
-" " if we want to try autocompletion
-" function InsertTabWrapper()
-"     let col = col('.') - 1
-"    if !col || getline('.')[col - 1] !~ '\k'
-"         return "\<tab>"
-"     else
-"         return "\<c-p>"
-"     endif
-" endfunction
-" 
-" " Remap the tab key to select action with InsertTabWrapper
-" inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-
-" }}} Autocompletion using the TAB key
-
-" {{{ Mappings for autogeneration of PHP code
-
-" There are 2 versions available of the code templates, one for the case, that
-" the close character mapping is disabled and one for the case it is enabled.
-
-" {{{ With close char mapping activated (currently active)
-
 :command! Sortcss :g#\({\n\)\@<=#.,/}/sort 
 
 set rnu
@@ -203,3 +179,28 @@ if v:version < '702'
 endif
 
 call pathogen#runtime_append_all_bundles()
+
+" vundles
+"git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-powerline'
+"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+" vim-scripts repos
+Bundle 'FuzzyFinder'
+Bundle 'L9'
+" non github repos
+"Bundle 'git://git.wincent.com/command-t.git'
+" ...
+
+filetype plugin indent on     " required! 
