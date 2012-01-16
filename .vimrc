@@ -8,9 +8,9 @@ set background=dark
 colorscheme solarized
 
 " White space in Vim
-set tabstop=3
-set softtabstop=3
-set shiftwidth=3
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set mouse=n
 set nowrap
@@ -52,9 +52,6 @@ let php_noShortTags = 1
 let php_parent_error_close = 1
 let php_parent_error_open = 1
 let php_folding = 1
-
-" some common helpful settings 
-set shiftwidth=2
 
 "do an incremental search
 set incsearch
@@ -194,6 +191,7 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/ctrlp.vim'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
 " vim-scripts repos
