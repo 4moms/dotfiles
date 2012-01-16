@@ -3,13 +3,14 @@ hi CursorLine ctermbg=white ctermfg=NONE guibg=white guifg=none
 hi CursorColumn ctermbg=white ctermfg=NONE guibg=white guifg=none
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 set nocompatible
+set laststatus=2
 set background=dark
 colorscheme solarized
 
 " White space in Vim
-set tabstop=3
-set softtabstop=3
-set shiftwidth=3
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set mouse=n
 set nowrap
@@ -51,9 +52,6 @@ let php_noShortTags = 1
 let php_parent_error_close = 1
 let php_parent_error_open = 1
 let php_folding = 1
-
-" some common helpful settings 
-set shiftwidth=2
 
 "do an incremental search
 set incsearch
@@ -142,31 +140,6 @@ set dictionary-=~/phpfunclist.txt dictionary+=~/phpfunclist.txt
 " Use the dictionary completion
 set complete-=k complete+=k
 
-" {{{ Autocompletion using the TAB key
-
-" " This function determines, wether we are on the start of the line text (then tab indents) or
-" " if we want to try autocompletion
-" function InsertTabWrapper()
-"     let col = col('.') - 1
-"    if !col || getline('.')[col - 1] !~ '\k'
-"         return "\<tab>"
-"     else
-"         return "\<c-p>"
-"     endif
-" endfunction
-" 
-" " Remap the tab key to select action with InsertTabWrapper
-" inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-
-" }}} Autocompletion using the TAB key
-
-" {{{ Mappings for autogeneration of PHP code
-
-" There are 2 versions available of the code templates, one for the case, that
-" the close character mapping is disabled and one for the case it is enabled.
-
-" {{{ With close char mapping activated (currently active)
-
 :command! Sortcss :g#\({\n\)\@<=#.,/}/sort 
 
 set rnu
@@ -174,15 +147,6 @@ set rnu
 " runtime macros/matchit.vim
 
 nnoremap <F5> :GundoToggle<CR>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-=======
->>>>>>> 0d1006a10439bf9fc6ac59404db83e2d39e5ddc0
-=======
->>>>>>> 0d1006a10439bf9fc6ac59404db83e2d39e5ddc0
 set history=700
 
 " Highlights lines over 80 chars in length
@@ -212,10 +176,29 @@ if v:version < '702'
 endif
 
 call pathogen#runtime_append_all_bundles()
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 0d1006a10439bf9fc6ac59404db83e2d39e5ddc0
-=======
->>>>>>> 0d1006a10439bf9fc6ac59404db83e2d39e5ddc0
-=======
->>>>>>> 0d1006a10439bf9fc6ac59404db83e2d39e5ddc0
+
+" vundles
+"git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/ctrlp.vim'
+"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+" vim-scripts repos
+Bundle 'FuzzyFinder'
+Bundle 'L9'
+" non github repos
+"Bundle 'git://git.wincent.com/command-t.git'
+" ...
+
+filetype plugin indent on     " required! 
