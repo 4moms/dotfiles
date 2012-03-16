@@ -108,8 +108,8 @@ autocmd BufRead *.py set expandtab
 " And for ruby
 autocmd BufRead *.rb set tabstop=2
 autocmd BufRead *.rb set expandtab
-autocmd BufRead *.rb set softtabstop=3
-autocmd BufRead *.rb set shiftwidth=3
+autocmd BufRead *.rb set softtabstop=2
+autocmd BufRead *.rb set shiftwidth=2
 
 " enable filetype detection:
 filetype on
