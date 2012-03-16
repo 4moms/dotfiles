@@ -35,3 +35,4 @@
 .xbmc*
 .vim/.netrwhist
 .vim/plugin/.DS_Store
+.vim/bundle/*
