@@ -126,6 +126,7 @@ abbreviate restaraunt restaurant
 if &term == "xterm-color"
   fixdel
 endif
+set t_Co=256
 
 " Enable folding by fold markers
 " this causes vi problems set foldmethod=marker 
@@ -197,6 +198,7 @@ Bundle 'tpope/vim-rails.git'
 " vim-scripts repos
 Bundle 'FuzzyFinder'
 Bundle 'L9'
+Bundle 'Markdown'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 " ...
