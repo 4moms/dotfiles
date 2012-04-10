@@ -5,7 +5,9 @@ nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 set nocompatible
 set laststatus=2
 set background=dark
+let g:solarized_termcolors=256
 colorscheme solarized
+set colorcolumn=80
 
 " White space in Vim
 set tabstop=2
@@ -108,8 +110,8 @@ autocmd BufRead *.py set expandtab
 " And for ruby
 autocmd BufRead *.rb set tabstop=2
 autocmd BufRead *.rb set expandtab
-autocmd BufRead *.rb set softtabstop=3
-autocmd BufRead *.rb set shiftwidth=3
+autocmd BufRead *.rb set softtabstop=2
+autocmd BufRead *.rb set shiftwidth=2
 
 " enable filetype detection:
 filetype on
@@ -193,6 +195,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
+Bundle 'altercation/vim-colors-solarized'
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
 " vim-scripts repos

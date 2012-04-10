@@ -716,7 +716,7 @@ exe "hi MatchParen"     . s:fg_red    .s:bg_base01 .s:fmt_bold
 "}}}
 " vim syntax highlighting "{{{
 " ---------------------------------------------------------------------
-exe "hi vimLineComment" . s:fg_base02 .s:bg_base01   .s:fmt_ital
+exe "hi vimLineComment" . s:fg_base03 .s:bg_base01   .s:fmt_ital
 exe "hi vimCommentString".s:fg_violet .s:bg_none   .s:fmt_ital
 hi link vimVar Identifier
 hi link vimFunc Function
