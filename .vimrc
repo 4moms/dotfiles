@@ -207,3 +207,8 @@ Bundle 'Markdown'
 " ...
 
 filetype plugin indent on     " required! 
+
+" Plugin specific settings
+"" Powerline
+let g:Powerline_symbols = 'fancy'
+set guifont=Inconsolata\ For\ Powerline
