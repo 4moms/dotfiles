@@ -36,10 +36,6 @@ set wildmode=list:longest
 " - Show line information
 set ruler
 
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
-
 nmap <leader>v :tabedit $MYVIMRC<CR>
 
 syntax on
@@ -68,6 +64,11 @@ set formatoptions=qroct
 :vnoremap [ "zdi^V[<C-R>z]<ESC>
 :vnoremap ' "zdi'<C-R>z'<ESC>
 :vnoremap " "zdi^V"<C-R>z^V"<ESC>
+
+augroup vimrc
+  "autocmd bufwritepost .vimrc source $MYVIMRC
+augroup END
+
 
 " Detect filetypes
 "if exists("did_load_filetypes")
@@ -147,7 +148,17 @@ set complete-=k complete+=k
 
 set rnu
 :match Search /\%(\_^\s*\)\@<=\%(\%1v\|\%5v\|\%9v\)\s/
+:match Search /\S\zs[\t ]\+\%#\@!$/
+call matchadd('Error', '') 
+
 " runtime macros/matchit.vim
+fun! HighlightWhitespaceErrors()
+  " trailing whitespace, except for the current cursor position
+  " tabs anywhere but leading
+endf
+au BufNewFile,BufRead * call HighlightWhitespaceErrors()
+
+
 
 nnoremap <F5> :GundoToggle<CR>
 set history=700
@@ -212,3 +223,13 @@ filetype plugin indent on     " required!
 "" Powerline
 let g:Powerline_symbols = 'fancy'
 set guifont=Inconsolata\ For\ Powerline
+
+" Ctrlp settings
+"" Split instead of replacing pane
+let g:ctrlp_prompt_mappings = {
+  \ 'AcceptSelection("h")': ['<cr>', '<2-LeftMouse>'],
+  \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
+  \ 'AcceptSelection("e")': ['<c-x>', '<c-cr>', '<c-s>'],
+  \ 'AcceptSelection("t")': ['<c-t>'],
+\}
+
