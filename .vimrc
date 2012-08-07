@@ -244,8 +244,8 @@ set guifont=Inconsolata\ For\ Powerline
 " Ctrlp settings
 "" Split instead of replacing pane
 let g:ctrlp_prompt_mappings = {
-  \ 'AcceptSelection("h")': ['<cr>', '<2-LeftMouse>'],
-  \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
+  \ 'AcceptSelection("v")': ['<cr>', '<2-LeftMouse>'],
+  \ 'AcceptSelection("h")': ['<c-v>', '<RightMouse>'],
   \ 'AcceptSelection("e")': ['<c-x>', '<c-cr>', '<c-s>'],
   \ 'AcceptSelection("t")': ['<c-t>'],
 \}
