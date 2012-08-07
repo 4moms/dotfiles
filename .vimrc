@@ -23,7 +23,13 @@ set autoindent
 set smartindent
 
 " Make pasting reasonable
-set paste
+"set paste
+
+" Escape with jk mashing
+inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap jj <Esc>
+inoremap kk <Esc>
 
 " The Vim command line
 " ====================
@@ -158,7 +164,18 @@ fun! HighlightWhitespaceErrors()
 endf
 au BufNewFile,BufRead * call HighlightWhitespaceErrors()
 
-
+" Typo fixer 2000
+if has("user_commands")
+    command! -bang -nargs=? -complete=file E e<bang> <args>
+    command! -bang -nargs=? -complete=file W w<bang> <args>
+    command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+    command! -bang -nargs=? -complete=file WQ wq<bang> <args>
+    command! -bang Wa wa<bang>
+    command! -bang WA wa<bang>
+    command! -bang Q q<bang>
+    command! -bang QA qa<bang>
+    command! -bang Qa qa<bang>
+endif
 
 nnoremap <F5> :GundoToggle<CR>
 set history=700
