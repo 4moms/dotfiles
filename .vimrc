@@ -41,7 +41,6 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
-set mouse=n
 set nowrap
 set backspace=2
 set autoindent
@@ -133,4 +132,3 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': ['<c-x>', '<c-cr>', '<c-s>'],
   \ 'AcceptSelection("t")': ['<c-t>'],
 \}
-
