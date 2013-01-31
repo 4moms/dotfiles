@@ -122,6 +122,7 @@ Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Markdown'
 Bundle 'VimClojure'
+Bundle 'ervandew/supertab'
 
 " ==== Plugins
 " Powerline
@@ -129,6 +130,7 @@ let g:Powerline_symbols = 'fancy'
 set guifont=Inconsolata\ For\ Powerline
 " Ctrlp 
 " Split instead of replacing pane
+" let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("v")': ['<cr>', '<2-LeftMouse>'],
   \ 'AcceptSelection("h")': ['<c-v>', '<RightMouse>'],
