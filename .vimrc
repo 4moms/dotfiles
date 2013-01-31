@@ -123,11 +123,15 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Markdown'
 Bundle 'VimClojure'
 Bundle 'ervandew/supertab'
+Bundle 'vim-scripts/Rainbow-Parenthesis'
 
 " ==== Plugins
 " Powerline
 let g:Powerline_symbols = 'fancy'
 set guifont=Inconsolata\ For\ Powerline
+" Rainbow-Parenthesis
+" they're overriden by syntax, so run this now
+runtime plugin/RainbowParenthsis.vim 
 " Ctrlp 
 " Split instead of replacing pane
 " let g:ctrlp_cmd = 'CtrlPMRU'
