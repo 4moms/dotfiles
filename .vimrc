@@ -53,6 +53,8 @@ autocmd BufRead *.rb set tabstop=2
 autocmd BufRead *.rb set expandtab
 autocmd BufRead *.rb set softtabstop=2
 autocmd BufRead *.rb set shiftwidth=2
+" Clojure
+autocmd BufRead *.clj setf clojure
 " Highlight extra whitespace
 :match Search /\%(\_^\s*\)\@<=\%(\%1v\|\%5v\|\%9v\)\s/
 :match Search /\S\zs[\t ]\+\%#\@!$/
@@ -119,6 +121,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Markdown'
+Bundle 'VimClojure'
 
 " ==== Plugins
 " Powerline

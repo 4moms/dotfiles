@@ -39,7 +39,7 @@ $ "
 }
 prompt
 
-PATH=/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PATH=/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/Users/jreese/bin
 
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
