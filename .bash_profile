@@ -11,12 +11,16 @@ alias gb='git branch -va'
 alias gf='git fetch'
 alias gp='git pull'
 alias gg='git status'
+alias changes='git diff --numstat --shortstat start'
 
 # Bundler
 alias be='bundle exec'
 
 # Rspec
 alias respect='bundle exec rspec'
+
+# Rails
+alias r='bundle exec rails s'
 
 # Search history
 bind '"\e[A": history-search-backward'
@@ -46,3 +50,5 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 eval "$(rbfu --init --auto)"
+
+rbfu-env @1.9.3-p194
