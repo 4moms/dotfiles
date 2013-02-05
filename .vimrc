@@ -16,6 +16,7 @@ if &term == "xterm-color"
   fixdel
 endif
 set t_Co=256
+set noswapfile
 
 
 
