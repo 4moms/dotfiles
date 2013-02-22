@@ -38,6 +38,7 @@ function prompt
   local BLUE="\[\033[0;34m\]"
   local LIGHT_BLUE="\[\033[1;34m\]"
   local YELLOW="\[\033[1;33m\]"
+  local RUBY=$RBFU_RUBY_VERSION
   export PS1="${YELLOW}\@ ${GREEN}\u@\h ${LIGHT_BLUE}(${RUBY}) ${CYAN}\w${GRAY}
 $ "
 }
@@ -52,3 +53,4 @@ fi
 eval "$(rbfu --init --auto)"
 
 rbfu-env @1.9.3-p194
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
