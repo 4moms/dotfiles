@@ -124,6 +124,7 @@ Bundle 'Markdown'
 Bundle 'VimClojure'
 Bundle 'ervandew/supertab'
 Bundle 'vim-scripts/Rainbow-Parenthesis'
+Bundle 'tpope/vim-endwise'
 
 " ==== Plugins
 " Powerline
