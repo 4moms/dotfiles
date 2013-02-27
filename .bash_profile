@@ -28,6 +28,13 @@ bind '"\e[B": history-search-forward'
 #bind '"\M-[A":history-search-backward'
 #bind '"\M-[B":history-search-forward'
 
+function cd
+{
+  builtin cd "$@"
+  prompt
+  _rbfu_auto
+}
+
 #command prompt customization
 function prompt
 {
@@ -42,7 +49,6 @@ function prompt
   export PS1="${YELLOW}\@ ${GREEN}\u@\h ${LIGHT_BLUE}(${RUBY}) ${CYAN}\w${GRAY}
 $ "
 }
-prompt
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/Users/jreese/bin
 
@@ -53,4 +59,4 @@ fi
 eval "$(rbfu --init --auto)"
 
 rbfu-env @1.9.3-p194
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+prompt
