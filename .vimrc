@@ -112,21 +112,6 @@ autocmd BufWritePost *.xsl !xmllint --noout <afile>
 " autocmd BufWritePost *.pp !puppet --parseonly <afile>
 augroup en
 
-" ==== Vundle
-"git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-filetype plugin indent on     " required!by Vundle
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-rails.git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Markdown'
-Bundle 'VimClojure'
-Bundle 'ervandew/supertab'
-Bundle 'vim-scripts/Rainbow-Parenthesis'
-Bundle 'tpope/vim-endwise'
-
 " ==== Plugins
 " Powerline
 let g:Powerline_symbols = 'fancy'
@@ -143,3 +128,21 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': ['<c-x>', '<c-cr>', '<c-s>'],
   \ 'AcceptSelection("t")': ['<c-t>'],
 \}
+
+run! plugin/*.vim
+
+" ==== Vundle
+"git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+filetype plugin indent on     " required!by Vundle
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-fugitive'
+Bundle 'Markdown'
+Bundle 'VimClojure'
+Bundle 'ervandew/supertab'
+Bundle 'vim-scripts/Rainbow-Parenthesis'
+Bundle 'tpope/vim-endwise'
+Bundle 'airblade/vim-gitgutter'
