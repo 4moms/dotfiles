@@ -74,6 +74,12 @@ filetype on
 augroup vimrc
   autocmd bufwritepost .vimrc source $MYVIMRC
 augroup END
+
+aug filetypedetect
+  au! BufNewFile,BufRead *.markdown,*.md,*.mkd se ft=markdown
+aug END
+
+
 nmap <leader>v :tabedit $MYVIMRC<CR>
 if has("user_commands")
     command! -bang -nargs=? -complete=file E e<bang> <args>
@@ -146,3 +152,4 @@ Bundle 'ervandew/supertab'
 Bundle 'vim-scripts/Rainbow-Parenthesis'
 Bundle 'tpope/vim-endwise'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'ervandew/supertab'
