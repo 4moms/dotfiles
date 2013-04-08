@@ -37,7 +37,6 @@ function cd
 {
   builtin cd "$@"
   prompt
-  _rbfu_auto
 }
 
 #command prompt customization
@@ -61,7 +60,7 @@ if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
 fi
 
-eval "$(rbfu --init --auto)"
-
-rbfu-env @1.9.3-p194
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+chruby ruby-1.9
 prompt
