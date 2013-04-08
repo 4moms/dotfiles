@@ -53,7 +53,8 @@ function prompt
 $ "
 }
 
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/Users/jreese/bin
+export NODE_PATH="/usr/local/lib/node"
+PATH=/usr/local/share/npm/bin:/usr/local/share/python/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/Users/jreese/bin
 
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
