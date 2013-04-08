@@ -12,6 +12,8 @@ alias gf='git fetch'
 alias gp='git pull'
 alias gg='git status'
 alias changes='git diff --numstat --shortstat start'
+alias jcom='git commit --author="justin.x.reese@gmail.com"'
+alias standup='git log --since yesterday --author `git config user.email` --pretty=short'
 
 # Bundler
 alias be='bundle exec'
@@ -21,6 +23,9 @@ alias respect='bundle exec rspec'
 
 # Rails
 alias r='bundle exec rails s'
+
+# Pow
+alias rpow='touch tmp/restart.txt'
 
 # Search history
 bind '"\e[A": history-search-backward'
