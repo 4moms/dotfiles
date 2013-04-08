@@ -49,8 +49,7 @@ function prompt
   local BLUE="\[\033[0;34m\]"
   local LIGHT_BLUE="\[\033[1;34m\]"
   local YELLOW="\[\033[1;33m\]"
-  local RUBY=$RBFU_RUBY_VERSION
-  export PS1="${YELLOW}\@ ${GREEN}\u@\h ${LIGHT_BLUE}(${RUBY}) ${CYAN}\w${GRAY}
+  export PS1="${YELLOW}\@ ${GREEN}\u@\h ${LIGHT_BLUE}() ${CYAN}\w${GRAY}
 $ "
 }
 
