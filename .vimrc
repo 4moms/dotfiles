@@ -156,6 +156,12 @@ Bundle 'vim-scripts/Rainbow-Parenthesis'
 Bundle 'tpope/vim-endwise'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'ervandew/supertab'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/vim-snippets"
+Bundle "garbas/vim-snipmate"
+Bundle 'rcyrus/snipmate-snippets-rubymotion'
+Bundle 'mhinz/vim-startify'
 Bundle 'rking/vim-detailed'
 "" Colors
 set background=dark
