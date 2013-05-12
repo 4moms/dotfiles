@@ -1,8 +1,4 @@
 " ==== Presentation
-" Colors
-set background=dark
-colorscheme solarized
-let g:solarized_termcolors=256
 " Info
 syntax on
 set colorcolumn=80
@@ -160,3 +156,8 @@ Bundle 'vim-scripts/Rainbow-Parenthesis'
 Bundle 'tpope/vim-endwise'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'ervandew/supertab'
+Bundle 'rking/vim-detailed'
+"" Colors
+set background=dark
+colorscheme detailed
+let g:solarized_termcolors=256
