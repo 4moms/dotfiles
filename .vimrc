@@ -7,7 +7,14 @@ let g:solarized_termcolors=256
 syntax on
 set colorcolumn=80
 set laststatus=2
-set rnu
+if exists('&relativenumber')
+  set relativenumber
+  augroup WindowRNU
+  auto!
+  auto BufWinEnter,WinEnter,FocusGained * setlocal relativenumber
+  auto WinLeave,FocusLost * setlocal number
+  augroup END
+endif
 " Do an incremental search
 set incsearch
 set hlsearch
