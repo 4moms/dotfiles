@@ -21,8 +21,6 @@ endif
 set t_Co=256
 set noswapfile
 
-
-
 " ==== Controls
 let mapleader = ","
 set mouse=n
