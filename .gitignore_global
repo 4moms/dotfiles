@@ -36,3 +36,7 @@ Thumbs.db
 # Swap files #
 ######################
 *.swp
+
+# Ruby #
+######################
+.ruby-version
