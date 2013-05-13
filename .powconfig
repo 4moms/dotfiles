@@ -1,1 +1,3 @@
-/Users/jreese/.powconfig
+source /etc/profile.d/chruby.sh
+chruby ruby-1.9.3-p392
+source /usr/local/share/chruby/auto.sh
