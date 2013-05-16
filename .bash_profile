@@ -38,6 +38,10 @@ alias rspec='rspec -c'
 # Pow
 alias rpow='touch tmp/restart.txt'
 
+# Apps
+alias v='vim'
+alias vi='vim'
+
 # Search history
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
