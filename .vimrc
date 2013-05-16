@@ -165,3 +165,6 @@ Bundle 'rking/vim-detailed'
 set background=dark
 colorscheme detailed
 let g:solarized_termcolors=256
+
+"" Aliases
+ia pry require 'pry'; binding.pry
