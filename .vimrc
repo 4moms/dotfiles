@@ -139,8 +139,7 @@ let g:ctrlp_prompt_mappings = {
 run! plugin/*.vim
 
 " ==== Vundle
-"git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/vundle/
 call vundle#rc()
 filetype plugin indent on     " required!by Vundle
 Bundle 'Lokaltog/vim-powerline'
