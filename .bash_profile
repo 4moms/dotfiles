@@ -28,6 +28,7 @@ alias standup='git log --since yesterday --author `git config user.email` --pret
 
 # Bundler
 alias be='bundle exec'
+alias rake='be rake'
 
 # Rspec
 alias respect='bundle exec rspec'
