@@ -160,7 +160,7 @@ Bundle "honza/vim-snippets"
 Bundle "garbas/vim-snipmate"
 Bundle 'rcyrus/snipmate-snippets-rubymotion'
 Bundle 'mhinz/vim-startify'
-Bundle 'rking/vim-detailed'
+Bundle 'justinxreese/vim-detailed'
 "" Colors
 set background=dark
 colorscheme detailed
