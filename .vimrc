@@ -167,4 +167,4 @@ colorscheme detailed
 let g:solarized_termcolors=256
 
 "" Aliases
-ia pry require 'pry'; binding.pry
+ia rpry require 'pry'; binding.pry
