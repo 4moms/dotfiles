@@ -162,7 +162,7 @@ Bundle 'mhinz/vim-startify'
 Bundle 'justinxreese/vim-detailed'
 "" Colors
 set background=dark
-colorscheme detailed
+colorscheme dandelion
 let g:solarized_termcolors=256
 
 "" Aliases
