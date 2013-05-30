@@ -42,6 +42,10 @@ alias rpow='touch tmp/restart.txt'
 # Apps
 alias v='vim'
 alias vi='vim'
+function onport() {
+  (( $# )) || set -- 3000
+  lsof -Pni :$*
+}
 
 # Search history
 bind '"\e[A": history-search-backward'
