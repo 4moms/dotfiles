@@ -11,6 +11,12 @@ if exists('&relativenumber')
   auto WinLeave,FocusLost * setlocal number
   augroup END
 endif
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 " Do an incremental search
 set incsearch
 set hlsearch
@@ -57,10 +63,6 @@ autocmd BufRead *.rb set softtabstop=2
 autocmd BufRead *.rb set shiftwidth=2
 " Clojure
 autocmd BufRead *.clj,*.cljs setf clojure
-" Highlight extra whitespace
-:match Search /\%(\_^\s*\)\@<=\%(\%1v\|\%5v\|\%9v\)\s/
-:match Search /\S\zs[\t ]\+\%#\@!$/
-call matchadd('Error', '')
 " Wrap visual selectiosn with chars
 vnoremap ( "zdi(<C-R>z)<ESC>
 vnoremap { "zdi{<C-R>z}<ESC>
