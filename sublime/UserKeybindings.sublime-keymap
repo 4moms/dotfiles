@@ -1,0 +1,4 @@
+// Default (OSX).sublime-keymap
+[
+	{ "keys": ["ctrl+shift+."], "command": "erb" }
+]
