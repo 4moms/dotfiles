@@ -72,6 +72,8 @@ $ "
 export NODE_PATH="/usr/local/lib/node"
 PATH=/usr/local/share/npm/bin:/usr/local/share/python/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/Users/jreese/bin
 PROMPT_COMMAND=prompt
+# retain $PROMPT_DIRTRIM directory components when the prompt is too long
+PROMPT_DIRTRIM=3
 
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
