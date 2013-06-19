@@ -1,0 +1,18 @@
+{
+	"auto_upgrade_last_run": null,
+	"installed_packages":
+	[
+		"ApplySyntax",
+		"CoffeeScript",
+		"ERB Insert and Toggle Commands",
+		"Git",
+		"GitGutter",
+		"Haml",
+		"Package Control",
+		"RSpec",
+		"RubyTest",
+		"Sass",
+		"SideBarEnhancements",
+		"Theme - Soda"
+	]
+}

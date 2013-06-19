@@ -1,0 +1,5 @@
+// Default (OSX).sublime-keymap
+[
+	{ "keys": ["ctrl+shift+."], "command": "erb" },
+  { "keys": ["super+v"], "command": "paste_and_indent" }
+]
