@@ -138,6 +138,9 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("t")': ['<c-t>'],
 \}
 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+
 run! plugin/*.vim
 
 " ==== Vundle
