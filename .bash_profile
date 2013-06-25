@@ -70,13 +70,20 @@ prompt() {
   local BLUE="\[\033[0;34m\]"
   local LIGHT_BLUE="\[\033[1;34m\]"
   local YELLOW="\[\033[1;33m\]"
+  local RED="\[\033[1;31m\]"
   local branch
   if [ -d .git ] ; then
     branch=$(git branch | awk '/^\*/ { print $2 }')
   else
     unset branch
   fi
-  PS1="${YELLOW}\d \@ ${GREEN}\u@\h ${branch:+$LIGHT_BLUE$branch }${CYAN}\w${GRAY}
+  local driver
+  if test -n "$DRIVER" ; then
+    driver="$LIGHT_BLUE($DRIVER)"
+  else
+    driver="${RED}NO DRIVER"
+  fi
+  PS1="${YELLOW}\d \@ ${GREEN}\u@\h ${branch:+$LIGHT_BLUE$branch }$driver ${CYAN}\w${GRAY}
 $ "
 }
 PROMPT_COMMAND=prompt
@@ -86,3 +93,66 @@ PROMPT_DIRTRIM=3
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
+
+# Pair-programming "driver" functions
+set_git_vars() {
+  export GIT_AUTHOR_NAME="$1"
+  export GIT_AUTHOR_EMAIL="$2"
+  export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+  export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+}
+
+set_driver_vars() {
+  local username fullname email
+  username="$1"
+  fullname="$2"
+  email="${3:-$username@4moms.com}"
+  DRIVER=$username
+  set_git_vars "$fullname" "$email"
+}
+
+reset_driver_vars() {
+  unset DRIVER
+  set_git_vars "Pairing Station - $(hostname -s)" software@4moms.com
+}
+
+driver() {
+  if [[ $# -ne 2 ]] && [[ $# -ne 3 ]] ; then
+    cat <<USAGE >&2
+Sets or resets the current "driver" for a pair.
+
+Usage: driver username "Full Name" [email@address]
+       driver reset
+Email address defaults to {username}@4moms.com
+USAGE
+    return 1
+  fi
+
+  set_driver_vars "$@"
+}
+
+# Set driver with aliases
+me() {
+  local unrecognized=false
+  case "$1" in
+    aland|drew) driver aland "Andrew Land" ;;
+    ashenoy|ash|shenoy) driver ashenoy "Alex Shenoy" ;;
+    asmith|andy|asm) driver asmith "Andy Smith" ;;
+    athorne|ath|thorne) driver athorne "Alex Thorne" ;;
+    bhaskell|ben|bh|benizi) driver bhaskell "Benjamin R. Haskell" ;;
+    dcarper|dan|dc) driver dcarper "Dan Carper" dcarper@dreamagile.com ;;
+    diachini|danny|di) driver diachini "Danny Iachini" ;;
+    jreese|justin|jr) driver jreese "Justin Reese" justin.x.reese@gmail.com ;;
+    mzalar|mark|mz) driver mzalar "Mark Zalar" ;;
+    pwaddingham|patrick|pw) driver pwaddingham "Patrick Waddingham" ;;
+    rvandervort|roger|rv) driver rvandervort "Roger Vandervort" rvandervort@gmail.com ;;
+    '') reset_driver_vars ; return 1 ;;
+    *) unrecognized=true ;;
+  esac
+
+  if $unrecognized ; then
+    printf 'Unrecognized driver alias: %s\n' "$1"
+    reset_driver_vars
+    return 1
+  fi
+}
