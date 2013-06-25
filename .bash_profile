@@ -1,4 +1,4 @@
-#.bashrc
+# Settings for all shells
 
 #Environment variables
 export EDITOR=vim
@@ -7,10 +7,17 @@ export PAGER=less
 export HISTCONTROL=ignoredups #ignore duplicate commands in history
 export CVS_RSH=ssh
 export LESS="-RM"
-export PATH=/usr/local/bin:$PATH
+export NODE_PATH=/usr/local/lib/node
+
+export PATH=/usr/local/share/npm/bin:/usr/local/share/python:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/Users/jreese/bin
+
 source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
 chruby 1.9.3
+
+
+# Settings for interactive shells
+
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # Bash
 alias ll='ls -lahG'
@@ -69,8 +76,6 @@ prompt() {
 	PS1="${YELLOW}\d \@ ${GREEN}\u@\h ${branch:+$LIGHT_BLUE$branch }${CYAN}\w${GRAY}
 $ "
 }
-export NODE_PATH="/usr/local/lib/node"
-PATH=/usr/local/share/npm/bin:/usr/local/share/python/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/Users/jreese/bin
 PROMPT_COMMAND=prompt
 # retain $PROMPT_DIRTRIM directory components when the prompt is too long
 PROMPT_DIRTRIM=3
