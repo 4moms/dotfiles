@@ -17,6 +17,9 @@ chruby 1.9.3
 
 # Settings for interactive shells
 
+# return if not interactive
+[[ $- != *i* ]] && return
+
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # Bash
