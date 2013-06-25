@@ -117,7 +117,39 @@ reset_driver_vars() {
 }
 
 driver() {
-  if [[ $# -ne 2 ]] && [[ $# -ne 3 ]] ; then
+  local unrecognized=false wrong_usage=false
+
+  case $# in
+    2|3) ;;
+    0|1)
+      case "$1" in
+        aland|drew) driver aland "Andrew Land" ;;
+        ashenoy|ash|shenoy) driver ashenoy "Alex Shenoy" ;;
+        asmith|andy|asm) driver asmith "Andy Smith" ;;
+        athorne|ath|thorne) driver athorne "Alex Thorne" ;;
+        bhaskell|ben|bh|benizi) driver bhaskell "Benjamin R. Haskell" ;;
+        dcarper|dan|dc) driver dcarper "Dan Carper" dcarper@dreamagile.com ;;
+        diachini|danny|di) driver diachini "Danny Iachini" ;;
+        jreese|justin|jr) driver jreese "Justin Reese" justin.x.reese@gmail.com ;;
+        mzalar|mark|mz) driver mzalar "Mark Zalar" ;;
+        pwaddingham|patrick|pw) driver pwaddingham "Patrick Waddingham" ;;
+        rvandervort|roger|rv) driver rvandervort "Roger Vandervort" rvandervort@gmail.com ;;
+        reset|'') reset_driver_vars ; return 0 ;;
+        *) unrecognized=true ;;
+      esac
+
+      if $unrecognized ; then
+        printf 'Unrecognized driver alias: %s\n' "$1"
+        reset_driver_vars
+        return 1
+      fi
+
+      return 0
+      ;;
+    *) wrong_usage=true ;;
+  esac
+
+  if $wrong_usage ; then
     cat <<USAGE >&2
 Sets or resets the current "driver" for a pair.
 
@@ -131,28 +163,4 @@ USAGE
   set_driver_vars "$@"
 }
 
-# Set driver with aliases
-me() {
-  local unrecognized=false
-  case "$1" in
-    aland|drew) driver aland "Andrew Land" ;;
-    ashenoy|ash|shenoy) driver ashenoy "Alex Shenoy" ;;
-    asmith|andy|asm) driver asmith "Andy Smith" ;;
-    athorne|ath|thorne) driver athorne "Alex Thorne" ;;
-    bhaskell|ben|bh|benizi) driver bhaskell "Benjamin R. Haskell" ;;
-    dcarper|dan|dc) driver dcarper "Dan Carper" dcarper@dreamagile.com ;;
-    diachini|danny|di) driver diachini "Danny Iachini" ;;
-    jreese|justin|jr) driver jreese "Justin Reese" justin.x.reese@gmail.com ;;
-    mzalar|mark|mz) driver mzalar "Mark Zalar" ;;
-    pwaddingham|patrick|pw) driver pwaddingham "Patrick Waddingham" ;;
-    rvandervort|roger|rv) driver rvandervort "Roger Vandervort" rvandervort@gmail.com ;;
-    '') reset_driver_vars ; return 1 ;;
-    *) unrecognized=true ;;
-  esac
-
-  if $unrecognized ; then
-    printf 'Unrecognized driver alias: %s\n' "$1"
-    reset_driver_vars
-    return 1
-  fi
-}
+alias me=driver
