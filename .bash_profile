@@ -63,20 +63,20 @@ bind '"\e[B": history-search-forward'
 
 #command prompt customization
 prompt() {
-	local WHITE="\[\033[1;37m\]"
-	local GREEN="\[\033[0;32m\]"
-	local CYAN="\[\033[0;36m\]"
-	local GRAY="\[\033[0;37m\]"
-	local BLUE="\[\033[0;34m\]"
-	local LIGHT_BLUE="\[\033[1;34m\]"
-	local YELLOW="\[\033[1;33m\]"
-	local branch
-	if [ -d .git ] ; then
-		branch=$(git branch | awk '/^\*/ { print $2 }')
-	else
-		unset branch
-	fi
-	PS1="${YELLOW}\d \@ ${GREEN}\u@\h ${branch:+$LIGHT_BLUE$branch }${CYAN}\w${GRAY}
+  local WHITE="\[\033[1;37m\]"
+  local GREEN="\[\033[0;32m\]"
+  local CYAN="\[\033[0;36m\]"
+  local GRAY="\[\033[0;37m\]"
+  local BLUE="\[\033[0;34m\]"
+  local LIGHT_BLUE="\[\033[1;34m\]"
+  local YELLOW="\[\033[1;33m\]"
+  local branch
+  if [ -d .git ] ; then
+    branch=$(git branch | awk '/^\*/ { print $2 }')
+  else
+    unset branch
+  fi
+  PS1="${YELLOW}\d \@ ${GREEN}\u@\h ${branch:+$LIGHT_BLUE$branch }${CYAN}\w${GRAY}
 $ "
 }
 PROMPT_COMMAND=prompt
@@ -84,5 +84,5 @@ PROMPT_COMMAND=prompt
 PROMPT_DIRTRIM=3
 
 if [ -f ~/.git-completion.bash ]; then
-    . ~/.git-completion.bash
+  . ~/.git-completion.bash
 fi
