@@ -52,8 +52,7 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
 #command prompt customization
-function prompt
-{
+prompt() {
 	local WHITE="\[\033[1;37m\]"
 	local GREEN="\[\033[0;32m\]"
 	local CYAN="\[\033[0;36m\]"
@@ -61,12 +60,20 @@ function prompt
 	local BLUE="\[\033[0;34m\]"
 	local LIGHT_BLUE="\[\033[1;34m\]"
 	local YELLOW="\[\033[1;33m\]"
-  export PS1="${YELLOW}\d \@ ${GREEN}\u@\h ${LIGHT_BLUE} ${CYAN}\w${GRAY}
+	local branch
+	if [ -d .git ] ; then
+		branch=$(git branch | awk '/^\*/ { print $2 }')
+	else
+		unset branch
+	fi
+	PS1="${YELLOW}\d \@ ${GREEN}\u@\h ${branch:+$LIGHT_BLUE$branch }${CYAN}\w${GRAY}
 $ "
 }
 export NODE_PATH="/usr/local/lib/node"
 PATH=/usr/local/share/npm/bin:/usr/local/share/python/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/Users/jreese/bin
-prompt
+PROMPT_COMMAND=prompt
+# retain $PROMPT_DIRTRIM directory components when the prompt is too long
+PROMPT_DIRTRIM=3
 
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
