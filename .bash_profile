@@ -95,25 +95,25 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 # Pair-programming "driver" functions
-set_git_vars() {
+git_set_user() {
   export GIT_AUTHOR_NAME="$1"
   export GIT_AUTHOR_EMAIL="$2"
   export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
   export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 }
 
-set_driver_vars() {
+driver_set_vars() {
   local username fullname email
   username="$1"
   fullname="$2"
   email="${3:-$username@4moms.com}"
   DRIVER=$username
-  set_git_vars "$fullname" "$email"
+  git_set_user "$fullname" "$email"
 }
 
-reset_driver_vars() {
+driver_reset_vars() {
   unset DRIVER
-  set_git_vars "Pairing Station - $(hostname -s)" software@4moms.com
+  git_set_user "Pairing Station - $(hostname -s)" software@4moms.com
 }
 
 driver() {
@@ -134,13 +134,13 @@ driver() {
         mzalar|mark|mz) driver mzalar "Mark Zalar" ;;
         pwaddingham|patrick|pw) driver pwaddingham "Patrick Waddingham" ;;
         rvandervort|roger|rv) driver rvandervort "Roger Vandervort" rvandervort@gmail.com ;;
-        reset|'') reset_driver_vars ; return 0 ;;
+        reset|'') driver_reset_vars ; return 0 ;;
         *) unrecognized=true ;;
       esac
 
       if $unrecognized ; then
         printf 'Unrecognized driver alias: %s\n' "$1"
-        reset_driver_vars
+        driver_reset_vars
         return 1
       fi
 
@@ -160,7 +160,7 @@ USAGE
     return 1
   fi
 
-  set_driver_vars "$@"
+  driver_set_vars "$@"
 }
 
 alias me=driver
