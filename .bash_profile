@@ -89,16 +89,18 @@ PROMPT_COMMAND=prompt
 # retain $PROMPT_DIRTRIM directory components when the prompt is too long
 PROMPT_DIRTRIM=3
 
-if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
-fi
-
 if [[ -n "${BASH_SOURCE[0]}" ]] ; then
   dotfiles="$(dirname "$(readlink "${BASH_SOURCE[0]}")")"
 fi
 
 # Finished if we couldn't find our root directory
 [[ -z "$dotfiles" ]] && return
+
+# Load completion files from $dotfiles/completion/{function}.bash
+_completion_load() {
+  . "$dotfiles/completion/$1.bash" > /dev/null 2>&1 && return 124
+}
+complete -D -F _completion_load
 
 # Pair-programming "driver" functions
 . $dotfiles/driver.bash
