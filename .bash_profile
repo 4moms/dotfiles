@@ -33,7 +33,6 @@ alias gcm='git commit -m'
 alias gf='git fetch'
 alias gp='git pull'
 alias changes='git diff --numstat --shortstat start'
-alias jcom='git commit --author="justin.x.reese@gmail.com"'
 alias standup='git log --since yesterday --author `git config user.email` --pretty=short'
 
 # Bundler
