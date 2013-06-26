@@ -9,7 +9,7 @@ export CVS_RSH=ssh
 export LESS="-RM"
 export NODE_PATH=/usr/local/lib/node
 
-export PATH=/usr/local/share/npm/bin:/usr/local/share/python:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/Users/jreese/bin
+export PATH=$HOME/bin:/usr/local/share/npm/bin:/usr/local/share/python:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 chruby 1.9.3
