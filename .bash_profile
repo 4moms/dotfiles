@@ -116,51 +116,88 @@ driver_reset_vars() {
   git_set_user "Pairing Station - $(hostname -s)" software@4moms.com
 }
 
-driver() {
-  local unrecognized=false wrong_usage=false
-
-  case $# in
-    2|3) ;;
-    0|1)
-      case "$1" in
-        aland|drew) driver aland "Andrew Land" ;;
-        ashenoy|ash|shenoy) driver ashenoy "Alex Shenoy" ;;
-        asmith|andy|asm) driver asmith "Andy Smith" ;;
-        athorne|ath|thorne) driver athorne "Alex Thorne" ;;
-        bhaskell|ben|bh|benizi) driver bhaskell "Benjamin R. Haskell" ;;
-        dcarper|dan|dc) driver dcarper "Dan Carper" dcarper@dreamagile.com ;;
-        diachini|danny|di) driver diachini "Danny Iachini" ;;
-        jreese|justin|jr) driver jreese "Justin Reese" justin.x.reese@gmail.com ;;
-        mzalar|mark|mz) driver mzalar "Mark Zalar" ;;
-        pwaddingham|patrick|pw) driver pwaddingham "Patrick Waddingham" ;;
-        rvandervort|roger|rv) driver rvandervort "Roger Vandervort" rvandervort@gmail.com ;;
-        reset|'') driver_reset_vars ; return 0 ;;
-        *) unrecognized=true ;;
-      esac
-
-      if $unrecognized ; then
-        printf 'Unrecognized driver alias: %s\n' "$1"
-        driver_reset_vars
-        return 1
-      fi
-
-      return 0
-      ;;
-    *) wrong_usage=true ;;
-  esac
-
-  if $wrong_usage ; then
-    cat <<USAGE >&2
-Sets or resets the current "driver" for a pair.
-
-Usage: driver username "Full Name" [email@address]
-       driver reset
-Email address defaults to {username}@4moms.com
-USAGE
-    return 1
+driver_load_file() {
+  if [[ -f ~/.driver ]] ; then
+    driver "$(<~/.driver)"
   fi
+}
 
-  driver_set_vars "$@"
+driver_save_file() {
+  if [[ -n "$DRIVER" ]] ; then
+    printf '%s' "$DRIVER" > ~/.driver
+  fi
+}
+
+driver_usage() {
+  cat <<USAGE >&2
+Manages the current "driver" for a pair.
+
+Usage:
+
+Set driver variables:
+  driver username "Full Name" email  -- set driver variables
+  driver username "Full Name"        -- email defaults to {username}@4moms.com
+  driver {alias}                     -- set driver variables by nickname
+
+Other commands:
+  driver show                        -- show driver variables
+  driver                             --        "
+  driver load                        -- load driver from ~/.driver (if present)
+  driver reset                       -- reset variables to default values
+  driver --help                      -- show this help
+USAGE
+}
+
+driver_show_vars() {
+  local var
+  for var in DRIVER GIT_AUTHOR_NAME GIT_AUTHOR_EMAIL ; do
+    printf '%s=%s\n' $var "${!var:-"(unset)"}"
+  done
+}
+
+driver() {
+  if [[ $# -gt 1 ]] ; then
+    driver_set_vars "$@"
+  else
+    # handle commands
+    local handled=true
+    case "$1" in
+      ''|show) driver_show_vars ;;
+      load) driver_load_file ;;
+      reset) driver_reset_vars ;;
+      save) driver_save_file ;;
+      -h|--help) driver_usage ;;
+      *) handled=false ;;
+    esac
+
+    $handled && return 0
+
+    # handle aliased users
+    handled=true
+    case "$1" in
+      aland|drew) driver aland "Andrew Land" ;;
+      ashenoy|ash|shenoy) driver ashenoy "Alex Shenoy" ;;
+      asmith|andy|asm) driver asmith "Andy Smith" ;;
+      athorne|ath|thorne) driver athorne "Alex Thorne" ;;
+      bhaskell|ben|bh|benizi) driver bhaskell "Benjamin R. Haskell" ;;
+      dcarper|dan|dc) driver dcarper "Dan Carper" dcarper@dreamagile.com ;;
+      diachini|danny|di) driver diachini "Danny Iachini" ;;
+      jreese|justin|jr) driver jreese "Justin Reese" justin.x.reese@gmail.com ;;
+      mzalar|mark|mz) driver mzalar "Mark Zalar" ;;
+      pwaddingham|patrick|pw) driver pwaddingham "Patrick Waddingham" ;;
+      rvandervort|roger|rv) driver rvandervort "Roger Vandervort" rvandervort@gmail.com ;;
+      *) handled=false ;;
+    esac
+
+    if $handled ; then
+      driver_save_file
+    else
+      printf 'Unrecognized driver alias: %s\n' "$1"
+      driver_reset_vars
+      return 1
+    fi
+  fi
 }
 
 alias me=driver
+driver load
