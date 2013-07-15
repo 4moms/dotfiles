@@ -96,6 +96,9 @@ if has("user_commands")
     command! -bang Qa qa<bang>
 endif
 
+" Check for file changes
+au CursorHold * checktime
+
 " === Programming things
 " Syntax checks
 augroup Programming
