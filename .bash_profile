@@ -78,3 +78,4 @@ PROMPT_DIRTRIM=3
 if [ -f ~/.git-completion.bash ]; then
     . ~/.git-completion.bash
 fi
+chruby 1.9.3p392
