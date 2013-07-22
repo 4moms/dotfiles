@@ -33,7 +33,7 @@ set mouse=n
 " Find the cursor
 hi CursorLine ctermbg=white ctermfg=NONE guibg=white guifg=none
 hi CursorColumn ctermbg=white ctermfg=NONE guibg=white guifg=none
-nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+nnoremap <Leader>C :set cursorline! cursorcolumn!<CR>
 " Escape with jk mashing
 inoremap jk <Esc>
 inoremap kj <Esc>
