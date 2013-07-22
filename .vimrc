@@ -169,6 +169,7 @@ Bundle 'rcyrus/snipmate-snippets-rubymotion'
 Bundle 'mhinz/vim-startify'
 Bundle 'justinxreese/vim-detailed'
 Bundle 'vim-scripts/bad-whitespace'
+Bundle 'scrooloose/nerdcommenter'
 "" Colors
 set background=dark
 colorscheme dandelion
