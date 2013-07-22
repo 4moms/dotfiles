@@ -25,7 +25,7 @@ if &term == "xterm-color"
   fixdel
 endif
 set t_Co=256
-set noswapfile
+set directory=~/.vim/swap//,/tmp/vim-swap//,/tmp//
 
 " ==== Controls
 let mapleader = ","
