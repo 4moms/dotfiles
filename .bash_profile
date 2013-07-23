@@ -29,6 +29,9 @@ HISTCONTROL=ignoreboth
 HISTSIZE=10000000
 HISTFILESIZE=10000000
 
+# only append the history at the end (shouldn't actually be needed - histappend)
+shopt -s histappend
+
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # Bash
@@ -68,6 +71,15 @@ function onport() {
 # Search history
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+
+# Simulate Zsh's preexec hook (see: http://superuser.com/a/175802/73015 )
+# (This performs the histappend at a better time)
+simulate_preexec() {
+  [ -n "$COMP_LINE" ] || # skip if doing completion
+    [ "$BASH_COMMAND" = "$PROMPT_COMMAND" ] || # skip if generating prompt
+    history -a
+}
+trap simulate_preexec DEBUG
 
 #command prompt customization
 prompt() {
