@@ -4,7 +4,6 @@
 export EDITOR=vim
 export VISUAL=$EDITOR
 export PAGER=less
-export HISTCONTROL=ignoredups #ignore duplicate commands in history
 export CVS_RSH=ssh
 export LESS="-RM"
 export NODE_PATH=/usr/local/lib/node
@@ -19,6 +18,16 @@ chruby 1.9.3
 
 # return if not interactive
 [[ $- != *i* ]] && return
+
+# History settings
+# ignoreboth=ignoredups:ignorespace
+# ignoredups = ignore duplicate commands in history
+# ignorespace = ignore commands that start with space
+HISTCONTROL=ignoreboth
+
+# Save (effectively) all commands ever
+HISTSIZE=10000000
+HISTFILESIZE=10000000
 
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
