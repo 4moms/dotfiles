@@ -1,2 +1,3 @@
-# .bashrc is not consistently sourced across bash versions or platforms
-# Please put settings in .bash_profile instead
+# Source .bash_profile if this is not a login shell
+# (in which case it *should* already be sourced)
+[[ $- != *l* ]] && . .bash_profile
