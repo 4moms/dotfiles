@@ -122,7 +122,7 @@ autocmd BufWritePost *.xsl !xmllint --noout <afile>
 " autocmd BufWritePost *.css !test -f ~/csstidy/csslint.php && php ~/csstidy/csslint.php <afile>
 " get jslint from http://javascriptlint.com/
 " autocmd BufWritePost *.pp !puppet --parseonly <afile>
-augroup en
+augroup END
 
 " ==== Plugins
 " Powerline
