@@ -110,8 +110,18 @@ PROMPT_COMMAND=prompt
 # retain $PROMPT_DIRTRIM directory components when the prompt is too long
 PROMPT_DIRTRIM=3
 
+# simulates GNU-style `readlink -f` (-f = follow components to make full path)
+# then takes the `dirname` of it. directory must exist
+dirname_readlink() {
+  local target="$1" wd="$(pwd)"
+  if cd -L "$(dirname "$(readlink "$target")")" >/dev/null 2>&1 ; then
+    pwd -P
+    cd "$wd" >/dev/null 2>&1
+  fi
+}
+
 if [[ -n "${BASH_SOURCE[0]}" ]] ; then
-  dotfiles="$(dirname "$(readlink "${BASH_SOURCE[0]}")")"
+  dotfiles="$(dirname_readlink "${BASH_SOURCE[0]}")"
 fi
 
 # Finished if we couldn't find our root directory
