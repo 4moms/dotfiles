@@ -135,8 +135,5 @@ done
 # Pair-programming "driver" functions
 . $dotfiles/driver.bash
 
-alias me=driver
-driver load
-
 # Workaround for broken chruby
 chruby 1.9.3p392
