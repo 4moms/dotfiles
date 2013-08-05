@@ -128,18 +128,9 @@ fi
 [[ -z "$dotfiles" ]] && return
 
 # Load completion files from $dotfiles/completion/{function}.bash
-if (( BASH_VERSINFO[0] < 4 )) ; then
-  # For old versions of Bash, preload them all
-  for script in "$dotfiles/completion/"*.bash ; do
-    . "$script" > /dev/null 2>&1
-  done
-else
-  # If we have version >= 4, we can load these as needed
-  _completion_load() {
-    . "$dotfiles/completion/$1.bash" > /dev/null 2>&1 && return 124
-  }
-  complete -D -F _completion_load
-fi
+for script in "$dotfiles/completion/"*.bash ; do
+  . "$script" > /dev/null 2>&1
+done
 
 # Pair-programming "driver" functions
 . $dotfiles/driver.bash
