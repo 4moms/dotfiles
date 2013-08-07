@@ -102,26 +102,26 @@ au CursorHold * checktime
 " === Programming things
 " Syntax checks
 augroup Programming
-" clear auto commands for this group
-autocmd!
-autocmd BufWritePost *.js !test -f ~/jslint/jsl && ~/jslint/jsl -conf ~/jslint/jsl.default.conf -nologo -nosummary -process <afile>
-autocmd BufWritePost *.rb !ruby -c <afile>
-autocmd BufWritePost *.rake !ruby -c <afile>
-autocmd BufWritePost *.erb !erb -x -T '-' <afile> | ruby -c 
-autocmd BufWritePost *.py !python -c "compile(open('<afile>').read(), '<afile>', 'exec')"
-autocmd BufWritePost *.php !php -d display_errors=on -l <afile>
-autocmd BufWritePost *.inc !php -d display_errors=on -l <afile>
-autocmd BufWritePost *httpd*.conf !/etc/rc.d/init.d/httpd configtest
-autocmd BufWritePost *.bash !bash -n <afile>
-autocmd BufWritePost *.sh !bash -n <afile>
-autocmd BufWritePost *.pl !perl -c <afile>
-autocmd BufWritePost *.perl !perl -c <afile>
-autocmd BufWritePost *.xml !xmllint --noout <afile>
-autocmd BufWritePost *.xsl !xmllint --noout <afile>
-" get csstidy from http://csstidy.sourceforge.net/
-" autocmd BufWritePost *.css !test -f ~/csstidy/csslint.php && php ~/csstidy/csslint.php <afile>
-" get jslint from http://javascriptlint.com/
-" autocmd BufWritePost *.pp !puppet --parseonly <afile>
+  " clear auto commands for this group
+  autocmd!
+  autocmd BufWritePost *.js !test -f ~/jslint/jsl && ~/jslint/jsl -conf ~/jslint/jsl.default.conf -nologo -nosummary -process <afile>
+  autocmd BufWritePost *.rb !ruby -c <afile>
+  autocmd BufWritePost *.rake !ruby -c <afile>
+  autocmd BufWritePost *.erb !erb -x -T '-' <afile> | ruby -c 
+  autocmd BufWritePost *.py !python -c "compile(open('<afile>').read(), '<afile>', 'exec')"
+  autocmd BufWritePost *.php !php -d display_errors=on -l <afile>
+  autocmd BufWritePost *.inc !php -d display_errors=on -l <afile>
+  autocmd BufWritePost *httpd*.conf !/etc/rc.d/init.d/httpd configtest
+  autocmd BufWritePost *.bash !bash -n <afile>
+  autocmd BufWritePost *.sh !bash -n <afile>
+  autocmd BufWritePost *.pl !perl -c <afile>
+  autocmd BufWritePost *.perl !perl -c <afile>
+  autocmd BufWritePost *.xml !xmllint --noout <afile>
+  autocmd BufWritePost *.xsl !xmllint --noout <afile>
+  " get csstidy from http://csstidy.sourceforge.net/
+  " autocmd BufWritePost *.css !test -f ~/csstidy/csslint.php && php ~/csstidy/csslint.php <afile>
+  " get jslint from http://javascriptlint.com/
+  " autocmd BufWritePost *.pp !puppet --parseonly <afile>
 augroup END
 
 " ==== Plugins
