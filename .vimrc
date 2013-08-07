@@ -176,13 +176,13 @@ ia rpry require 'pry'; binding.pry
 
 "" Testing
 function! RunTests(filename)
-" Write the file and run tests for the given filename
+  " Write the file and run tests for the given filename
   :w
   exec ":!bundle exec rspec " . a:filename
 endfunction
 
 function! SetTestFile()
-" Set the spec file that tests will be run for.
+  " Set the spec file that tests will be run for.
   let t:grb_test_file=@%
 endfunction
 
@@ -194,8 +194,8 @@ function! RunTestFile(...)
     let command_suffix = ""
   endif
 
-" Run the tests for the
-" previously-marked file.
+  " Run the tests for the
+  " previously-marked file.
   let in_spec_file = match(expand("%"), '$') != -1
   if in_spec_file
     call SetTestFile()
