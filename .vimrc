@@ -6,9 +6,9 @@ set laststatus=2
 if exists('&relativenumber')
   set relativenumber
   augroup WindowRNU
-  auto!
-  auto BufWinEnter,WinEnter,FocusGained * setlocal relativenumber
-  auto WinLeave,FocusLost * setlocal number
+    autocmd!
+    autocmd BufWinEnter,WinEnter,FocusGained * setlocal relativenumber
+    autocmd WinLeave,FocusLost * setlocal number
   augroup END
 endif
 highlight ExtraWhitespace ctermbg=red guibg=red
