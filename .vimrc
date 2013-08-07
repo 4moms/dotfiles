@@ -54,15 +54,11 @@ set backspace=2
 set autoindent
 set smartindent
 " Special settings for python
-autocmd BufRead *.py set tabstop=4
-autocmd BufRead *.py set expandtab
+autocmd BufRead,BufNewFile *.py setlocal tabstop=4 expandtab
 " And for ruby
-autocmd BufRead *.rb set tabstop=2
-autocmd BufRead *.rb set expandtab
-autocmd BufRead *.rb set softtabstop=2
-autocmd BufRead *.rb set shiftwidth=2
+autocmd BufRead,BufNewFile *.rb setlocal tabstop=2 expandtab softtabstop=2 shiftwidth=2
 " Clojure
-autocmd BufRead *.clj,*.cljs setf clojure
+autocmd BufRead,BufNewFile *.clj,*.cljs setf clojure
 " Wrap visual selectiosn with chars
 vnoremap ( "zdi(<C-R>z)<ESC>
 vnoremap { "zdi{<C-R>z}<ESC>
