@@ -69,8 +69,8 @@ function onport() {
 }
 
 # Search history
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
+bind "\"$(tput kcuu1)\": history-search-backward"
+bind "\"$(tput kcud1)\": history-search-forward"
 
 # Simulate Zsh's preexec hook (see: http://superuser.com/a/175802/73015 )
 # (This performs the histappend at a better time)
