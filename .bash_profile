@@ -19,6 +19,29 @@ chruby 1.9.3
 # return if not interactive
 [[ $- != *i* ]] && return
 
+## Set up $dotfiles directory
+# simulates GNU-style `readlink -f` (-f = follow components to make full path)
+# then takes the `dirname` of it. directory must exist
+dirname_readlink() {
+  local target="$1" wd="$(pwd)"
+  if cd -L "$(dirname "$(readlink "$target")")" >/dev/null 2>&1 ; then
+    pwd -P
+    cd "$wd" >/dev/null 2>&1
+  fi
+}
+
+if [[ -n "${BASH_SOURCE[0]}" ]] ; then
+  dotfiles="$(dirname_readlink "${BASH_SOURCE[0]}")"
+fi
+
+# Finished if we couldn't find our root directory
+if [[ -z "$dotfiles" ]] || [[ ! -d "$dotfiles" ]] ; then
+  tput setaf 1 >&2
+  echo "Couldn't find root of dotfiles directory. Exiting .bash_profile early." >&2
+  tput sgr0 >&2
+  return
+fi
+
 # History settings
 # ignoreboth=ignoredups:ignorespace
 # ignoredups = ignore duplicate commands in history
@@ -91,41 +114,32 @@ prompt() {
   local LIGHT_BLUE="\[\033[1;34m\]"
   local YELLOW="\[\033[1;33m\]"
   local RED="\[\033[1;31m\]"
+  local no_color='\[\033[0m\]'
+
+  local time="${YELLOW}\d \@$no_color"
+  local whoami="${GREEN}\u@\h$no_color"
+  local dir="${CYAN}\w$no_color"
+
   local branch
   if [ -d .git ] ; then
     branch=$(git branch | awk '/^\*/ { print $2 }')
+    branch="${branch:+$LIGHT_BLUE$branch }"
   else
     unset branch
   fi
+
   local driver
   if test -n "$DRIVER" ; then
     driver="$LIGHT_BLUE($DRIVER)"
   else
     driver="${RED}NO DRIVER"
   fi
-  PS1="${YELLOW}\d \@ ${GREEN}\u@\h ${branch:+$LIGHT_BLUE$branch }$driver ${CYAN}\w${GRAY}
-$ "
+
+  PS1="$time $whoami $branch$dir\n$driver$no_color \$ "
 }
 PROMPT_COMMAND=prompt
 # retain $PROMPT_DIRTRIM directory components when the prompt is too long
 PROMPT_DIRTRIM=3
-
-# simulates GNU-style `readlink -f` (-f = follow components to make full path)
-# then takes the `dirname` of it. directory must exist
-dirname_readlink() {
-  local target="$1" wd="$(pwd)"
-  if cd -L "$(dirname "$(readlink "$target")")" >/dev/null 2>&1 ; then
-    pwd -P
-    cd "$wd" >/dev/null 2>&1
-  fi
-}
-
-if [[ -n "${BASH_SOURCE[0]}" ]] ; then
-  dotfiles="$(dirname_readlink "${BASH_SOURCE[0]}")"
-fi
-
-# Finished if we couldn't find our root directory
-[[ -z "$dotfiles" ]] && return
 
 # Load completion files from $dotfiles/completion/{function}.bash
 for script in "$dotfiles/completion/"*.bash ; do
