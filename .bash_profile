@@ -19,6 +19,9 @@ chruby 1.9.3
 # return if not interactive
 [[ $- != *i* ]] && return
 
+# set a default terminal type for deficient systems or weird terminals
+tput longname >/dev/null 2>&1 || export TERM=xterm
+
 ## Set up $dotfiles directory
 # simulates GNU-style `readlink -f` (-f = follow components to make full path)
 # then takes the `dirname` of it. directory must exist
