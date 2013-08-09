@@ -22,6 +22,12 @@ chruby 1.9.3
 # set a default terminal type for deficient systems or weird terminals
 tput longname >/dev/null 2>&1 || export TERM=xterm
 
+warn() {
+  tput setaf 1 >&2
+  printf '%s\n' "$*"
+  tput sgr0 >&2
+}
+
 ## Set up $dotfiles directory
 # simulates GNU-style `readlink -f` (-f = follow components to make full path)
 # then takes the `dirname` of it. directory must exist
@@ -39,9 +45,7 @@ fi
 
 # Finished if we couldn't find our root directory
 if [[ -z "$dotfiles" ]] || [[ ! -d "$dotfiles" ]] ; then
-  tput setaf 1 >&2
-  echo "Couldn't find root of dotfiles directory. Exiting .bash_profile early." >&2
-  tput sgr0 >&2
+  warn "Couldn't find root of dotfiles directory. Exiting .bash_profile early."
   return
 fi
 
