@@ -174,6 +174,9 @@ let g:solarized_termcolors=256
 "" Aliases
 ia rpry require 'pry'; binding.pry
 
+"" Reset search highlighting when refreshing the screen (Ctrl+l)
+nn <silent> <C-l> :nohls<CR><C-l>
+
 "" Testing
 function! RunTests(filename)
   " Write the file and run tests for the given filename
