@@ -83,6 +83,7 @@ alias rake='be rake'
 
 # Rspec
 alias respect='bundle exec rspec'
+alias wipit='be rspec -t @wip'
 
 # Rails
 alias r='bundle exec rails s'
