@@ -133,9 +133,19 @@ function onport() {
   lsof -Pni :$*
 }
 
+## only binds the given termcap entr(y|ies) to a widget if the terminal supports it
+conditioned_bind() {
+  local widget=$1 key termcap
+  shift
+  for termcap ; do
+    key="$(tput $termcap)"
+    [ -n "$key" ] && bind "\"$key\": $widget"
+  done
+}
+
 # Search history
-bind "\"$(tput kcuu1)\": history-search-backward"
-bind "\"$(tput kcud1)\": history-search-forward"
+conditioned_bind history-search-backward cuu1 kcuu1
+conditioned_bind history-search-forward cud1 kcud1
 
 # Simulate Zsh's preexec hook (see: http://superuser.com/a/175802/73015 )
 # (This performs the histappend at a better time)
