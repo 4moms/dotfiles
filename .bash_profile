@@ -91,6 +91,7 @@ alias r='bundle exec rails s'
 alias rspec='rspec -c'
 # Pow
 alias rpow='touch tmp/restart.txt'
+alias vlm='vim db/migrate/`ls db/migrate | tail -1`'
 
 # Apps
 alias v='vim'
