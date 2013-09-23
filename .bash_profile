@@ -89,7 +89,7 @@ if [[ -z "$dotfiles" ]] || [[ ! -d "$dotfiles" ]] ; then
   dotfiles=$HOME/github/4moms/dotfiles
 fi
 
-# Finished if we couldn't find our root directory
+# Finish if we couldn't find our root directory
 if [[ -z "$dotfiles" ]] || [[ ! -d "$dotfiles" ]] ; then
   warn "Couldn't find root of dotfiles directory. Exiting .bash_profile early."
   return
