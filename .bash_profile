@@ -68,8 +68,11 @@ dirname_readlink() {
   fi
 }
 
-if [[ -n "${BASH_SOURCE[0]}" ]] ; then
-  dotfiles="$(dirname_readlink "${BASH_SOURCE[0]}")"
+if [[ -L "$HOME/.bash_profile" ]] ; then
+  dotfiles="$(dirname_readlink "$HOME/.bash_profile")"
+else
+  warn "~/.bash_profile should be a link to .bash_profile in the dotfiles repo"
+  dotfiles=$HOME/github/4moms/dotfiles
 fi
 
 # Finished if we couldn't find our root directory
