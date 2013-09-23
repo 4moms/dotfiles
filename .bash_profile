@@ -58,19 +58,33 @@ warn() {
 }
 
 ## Set up $dotfiles directory
-# simulates GNU-style `readlink -f` (-f = follow components to make full path)
-# then takes the `dirname` of it. directory must exist
-dirname_readlink() {
-  local target="$1" wd="$(pwd)"
-  if cd -L "$(dirname "$(readlink "$target")")" >/dev/null 2>&1 ; then
-    pwd -P
-    cd "$wd" >/dev/null 2>&1
+# returns true if the program is installed
+installed() {
+  hash "$1" >/dev/null 2>&1
+}
+
+# OSX `readlink` doesn't support the `-f` option (-f = follow components to make full path)
+# If `greadlink` is installed, use it
+# Otherwise, use the dir and basename provided to construct a sufficient stand-in
+relative_readlink() {
+  local dir="$1" base="$2"
+  if installed greadlink ; then
+    dirname "$(greadlink -f "$dir/$base")"
+  elif pushd "$dir" >/dev/null 2>&1 ; then
+    local link="$(readlink "$base")"
+    case "$link" in
+      /*) dirname "$link" ;;
+      *) pushd "$(dirname "$link")" >/dev/null 2>&1 ; pwd -P ; popd >/dev/null ;;
+    esac
+    popd >/dev/null
   fi
 }
 
 if [[ -L "$HOME/.bash_profile" ]] ; then
-  dotfiles="$(dirname_readlink "$HOME/.bash_profile")"
-else
+  dotfiles="$(relative_readlink "$HOME" .bash_profile)"
+fi
+
+if [[ -z "$dotfiles" ]] || [[ ! -d "$dotfiles" ]] ; then
   warn "~/.bash_profile should be a link to .bash_profile in the dotfiles repo"
   dotfiles=$HOME/github/4moms/dotfiles
 fi
