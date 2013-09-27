@@ -137,6 +137,9 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("t")': ['<c-t>'],
 \}
 
+" <leader>n = CtrlP from current file's directory
+nm <leader>n :CtrlPCurFile<CR>
+
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 
