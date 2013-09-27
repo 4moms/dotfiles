@@ -31,7 +31,7 @@ if [ -d "$chruby_dir" ] ; then
     use_chruby_version=$(<~/.ruby-version)
     unset chruby_defaulted
   elif [ -d /opt/rubies ] ; then
-    use_chruby_version=$(ls -dt1 /opt/rubies/* | awk -F/ '{print $(NF)}')
+    use_chruby_version=$(ls -dt1 /opt/rubies/* | awk -F/ '{print $(NF)}' | sed 1q)
     chruby_defaulted='latest version found'
   fi
 
