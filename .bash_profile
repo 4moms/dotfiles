@@ -116,6 +116,7 @@ shopt -s histappend
 
 # Bash
 alias ll='ls -lahG'
+alias l=ll
 alias f='find . -name'
 
 # Git
