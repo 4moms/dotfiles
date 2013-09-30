@@ -165,7 +165,7 @@ Bundle "honza/vim-snippets"
 Bundle "garbas/vim-snipmate"
 Bundle 'rcyrus/snipmate-snippets-rubymotion'
 Bundle 'mhinz/vim-startify'
-Bundle 'justinxreese/vim-detailed'
+Bundle 'justinxreese/vim-dandelion'
 Bundle 'vim-scripts/bad-whitespace'
 Bundle 'scrooloose/nerdcommenter'
 "" Colors
