@@ -126,6 +126,7 @@ alias f='find . -name'
 
 # Git
 alias gg='git status'
+alias gs='git status'
 alias gb='git branch -va'
 alias gcm='git commit -m'
 alias gf='git fetch'
