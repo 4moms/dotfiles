@@ -168,7 +168,7 @@ function onport() {
 }
 
 ## only binds the given termcap entr(y|ies) to a widget if the terminal supports it
-conditioned_bind() {
+termcap_bind() {
   local widget=$1 key termcap
   shift
   for termcap ; do
@@ -178,8 +178,8 @@ conditioned_bind() {
 }
 
 # Search history
-conditioned_bind history-search-backward cuu1 kcuu1
-conditioned_bind history-search-forward cud1 kcud1
+termcap_bind history-search-backward cuu1 kcuu1
+termcap_bind history-search-forward cud1 kcud1
 
 # Simulate Zsh's preexec hook (see: http://superuser.com/a/175802/73015 )
 # (This performs the histappend at a better time)
