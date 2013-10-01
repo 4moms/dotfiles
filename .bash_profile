@@ -133,6 +133,17 @@ alias gp='git pull'
 alias changes='git diff --numstat --shortstat start'
 alias standup='git log --since yesterday --author `git config user.email` --pretty=short'
 
+# bhaskell git
+alias gap='git add -p'
+alias gci='git commit'
+alias gco='git checkout'
+alias gd='git diff'
+alias gka='gitk --all'
+alias gls='git ls-files'
+alias gpop='git stash pop'
+alias gst='git status'
+alias gstash='git stash'
+
 # Bundler
 alias be='bundle exec'
 alias rake='be rake'
