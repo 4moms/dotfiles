@@ -115,7 +115,12 @@ shopt -s histappend
 [ -d "$chruby_dir" ] && . $chruby_dir/auto.sh
 
 # Bash
-alias ll='ls -lahG'
+case "$(uname)" in
+  *Darwin*) ls_options=-lahG ;;
+  *) ls_options=-lah ;;
+esac
+
+alias ll="ls $ls_options"
 alias l=ll
 alias f='find . -name'
 
