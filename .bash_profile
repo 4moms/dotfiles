@@ -100,6 +100,7 @@ if [ -n "$chruby_defaulted" ] ; then
 fi
 
 . $dotfiles/check-bash-version.bash
+. $dotfiles/app-navigation.bash
 
 running_modern_bash && shopt -s autocd
 
