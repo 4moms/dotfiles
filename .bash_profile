@@ -210,7 +210,7 @@ prompt() {
   local dir="${CYAN}\w$no_color"
 
   local branch
-  if [ -d .git ] ; then
+  if git rev-parse --git-dir >/dev/null 2>/dev/null ; then
     branch=$(git branch | awk '/^\*/ { print $2 }')
     branch="${branch:+$LIGHT_BLUE$branch }"
   else
