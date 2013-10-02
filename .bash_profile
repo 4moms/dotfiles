@@ -101,6 +101,8 @@ fi
 
 . $dotfiles/check-bash-version.bash
 
+running_modern_bash && shopt -s autocd
+
 # History settings
 # ignoreboth=ignoredups:ignorespace
 # ignoredups = ignore duplicate commands in history
