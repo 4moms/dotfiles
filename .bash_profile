@@ -99,6 +99,8 @@ if [ -n "$chruby_defaulted" ] ; then
   warn "chruby version defaulted to $chruby_defaulted: $use_chruby_version"
 fi
 
+. $dotfiles/check-bash-version.bash
+
 # History settings
 # ignoreboth=ignoredups:ignorespace
 # ignoredups = ignore duplicate commands in history
