@@ -226,7 +226,7 @@ prompt() {
     driver="${RED}NO DRIVER"
   fi
 
-  PS1="$time $whoami $branch$dir\n$driver$no_color \$ "
+  PS1="\n$time $whoami $branch$dir\n$driver$no_color \$ "
 }
 PROMPT_COMMAND=prompt
 # retain $PROMPT_DIRTRIM directory components when the prompt is too long
