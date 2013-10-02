@@ -155,6 +155,8 @@ alias rake='be rake'
 alias respect='bundle exec rspec'
 alias ber='bundle exec rspec'
 alias wipit='be rspec -t @wip'
+# Run the specs and push if successful
+alias rpush='rspec --fail-fast && git push'
 
 # Rails
 alias r='bundle exec rails s'
