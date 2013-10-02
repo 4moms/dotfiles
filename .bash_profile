@@ -197,6 +197,8 @@ trap simulate_preexec DEBUG
 
 #command prompt customization
 prompt() {
+  local last_status=$?
+
   local WHITE="\[\033[1;37m\]"
   local GREEN="\[\033[0;32m\]"
   local CYAN="\[\033[0;36m\]"
@@ -226,7 +228,14 @@ prompt() {
     driver="${RED}NO DRIVER"
   fi
 
-  PS1="\n$time $whoami $branch$dir\n$driver$no_color \$ "
+  local last_fail
+  if test $last_status -ne 0 ; then
+    last_fail="=> ${YELLOW}Err: $last_status${no_color}\n"
+  else
+    unset last_fail
+  fi
+
+  PS1="\n$time $whoami $branch$dir\n$last_fail$driver$no_color \$ "
 }
 PROMPT_COMMAND=prompt
 # retain $PROMPT_DIRTRIM directory components when the prompt is too long
