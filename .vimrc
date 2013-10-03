@@ -124,9 +124,9 @@ augroup Programming
 augroup END
 
 " ==== Plugins
-" Powerline
-let g:Powerline_symbols = 'fancy'
-set guifont=Inconsolata\ For\ Powerline
+" Airline (better Powerline)
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
 " Rainbow-Parenthesis
 " they're overriden by syntax, so run this now
 runtime plugin/RainbowParenthsis.vim 
@@ -149,7 +149,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set rtp+=~/.vim/vundle
 call alternative#vundle#rc()
 filetype plugin indent on     " required!by Vundle
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-fugitive'
