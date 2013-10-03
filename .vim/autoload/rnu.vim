@@ -21,7 +21,7 @@ endf
 
 " Set up relative numbering. Default is enabled.
 fun! rnu#setup()
-  if exists('rnu#enabled') && !rnu#enabled
+  if !exists('rnu#enabled') || rnu#enabled
     call rnu#enable()
   else
     call rnu#disable()
