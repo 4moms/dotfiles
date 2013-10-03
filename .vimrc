@@ -1,3 +1,6 @@
+" To add driver settings, put a file called driver-$DRIVER.vim in &runtimepath
+cal driver#setup()
+
 " ==== Presentation
 " Info
 syntax on
