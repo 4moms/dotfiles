@@ -6,14 +6,10 @@ cal driver#setup()
 syntax on
 set colorcolumn=80
 set laststatus=2
-if exists('&relativenumber')
-  set relativenumber
-  augroup WindowRNU
-    autocmd!
-    autocmd BufWinEnter,WinEnter,FocusGained * setlocal relativenumber
-    autocmd BufWinLeave,WinLeave,FocusLost * setlocal number
-  augroup END
-endif
+
+" setup relative numbering
+call rnu#setup()
+
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
