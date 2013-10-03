@@ -39,7 +39,14 @@ app() {
     fi
   done
 
-  # else print an error message
-  warn 'No directory found'
-  return 1
+  # else check to see if the remote exists
+  local repo=git@github.com:4moms/"$app"
+  local dest="$githome"/"$app"
+  if git ls-remote "$repo" &>- ; then
+    printf 'Cloning %s into %s\n' "$repo" "$dest"
+    git clone "$repo" "$dest" && cd "$dest"
+  else
+    warn "No directory found and $repo doesn't exist"
+    return 1
+  fi
 }
