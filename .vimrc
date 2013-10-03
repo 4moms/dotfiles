@@ -1,3 +1,7 @@
+" Encoding (important that this is set early in .vimrc)
+se enc=utf8 " use UTF-8 internally
+se fencs=ucs-bom,utf-8,default,latin1 " detect detectable Unicode, but fall back
+
 " To add driver settings, put a file called driver-$DRIVER.vim in &runtimepath
 cal driver#setup()
 
