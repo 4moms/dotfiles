@@ -11,7 +11,7 @@ if exists('&relativenumber')
   augroup WindowRNU
     autocmd!
     autocmd BufWinEnter,WinEnter,FocusGained * setlocal relativenumber
-    autocmd WinLeave,FocusLost * setlocal number
+    autocmd BufWinLeave,WinLeave,FocusLost * setlocal number
   augroup END
 endif
 highlight ExtraWhitespace ctermbg=red guibg=red
