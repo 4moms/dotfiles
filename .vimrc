@@ -142,9 +142,6 @@ nm <leader>n :CtrlPCurFile<CR>
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
-
-run! plugin/*.vim
-
 " ==== Vundle
 set rtp+=~/.vim/vundle/
 call vundle#rc()
