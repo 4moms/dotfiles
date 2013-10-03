@@ -4,8 +4,8 @@ fun! rnu#enable()
     set relativenumber
     augroup WindowRNU
       autocmd!
-      autocmd BufWinEnter,WinEnter,FocusGained * setlocal relativenumber
-      autocmd BufWinLeave,WinLeave,FocusLost * setlocal number
+      autocmd BufWinEnter,WinEnter,FocusGained * setlocal number relativenumber
+      autocmd BufWinLeave,WinLeave,FocusLost * setlocal number nornu
     augroup END
   endif
 endf
