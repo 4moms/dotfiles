@@ -143,8 +143,8 @@ nm <leader>n :CtrlPCurFile<CR>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 " ==== Vundle
-set rtp+=~/.vim/vundle/
-call vundle#rc()
+set rtp+=~/.vim/vundle
+call alternative#vundle#rc()
 filetype plugin indent on     " required!by Vundle
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/ctrlp.vim'
