@@ -95,6 +95,8 @@ if [[ -z "$dotfiles" ]] || [[ ! -d "$dotfiles" ]] ; then
   return
 fi
 
+export DOTFILES="$dotfiles"
+
 if [ -n "$chruby_defaulted" ] ; then
   warn "chruby version defaulted to $chruby_defaulted: $use_chruby_version"
 fi
