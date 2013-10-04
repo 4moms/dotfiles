@@ -6,7 +6,7 @@ export VISUAL=$EDITOR
 export PAGER=less
 export CVS_RSH=ssh
 export LESS="-RM"
-export NODE_PATH=/usr/local/lib/node
+export NODE_PATH=/usr/local/lib/node_modules
 
 export PATH=$HOME/bin:/usr/local/share/npm/bin:/usr/local/share/python:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
