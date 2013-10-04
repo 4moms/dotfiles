@@ -168,6 +168,7 @@ Bundle 'mhinz/vim-startify'
 Bundle 'justinxreese/vim-dandelion'
 Bundle 'vim-scripts/bad-whitespace'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'rodjek/vim-puppet'
 "" Colors
 set background=dark
 colorscheme dandelion
