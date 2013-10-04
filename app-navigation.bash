@@ -42,7 +42,7 @@ app() {
   # else check to see if the remote exists
   local repo=git@github.com:4moms/"$app"
   local dest="$githome"/"$app"
-  if git ls-remote "$repo" &>- ; then
+  if git ls-remote "$repo" &>/dev/null ; then
     printf 'Cloning %s into %s\n' "$repo" "$dest"
     git clone "$repo" "$dest" && cd "$dest"
   else
