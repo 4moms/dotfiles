@@ -142,10 +142,12 @@ alias changes='git diff --numstat --shortstat start'
 alias standup='git log --since yesterday --author `git config user.email` --pretty=short'
 
 # bhaskell git
+alias g=git
 alias gap='git add -p'
 alias gci='git commit'
 alias gco='git checkout'
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias gka='gitk --all'
 alias gls='git ls-files'
 alias gpop='git stash pop'
