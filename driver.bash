@@ -15,6 +15,13 @@ driver_set_vars() {
   email="${3:-$username@4moms.com}"
   export DRIVER=$username
   git_set_user "$fullname" "$email"
+  driver_load_personal_bash # $username
+}
+
+driver_load_personal_bash() {
+  if [ -f $DRIVERS_DIR'/driver-'$username'.bash' ]; then
+    . $DRIVERS_DIR'/driver-'$username'.bash'
+  fi
 }
 
 driver_reset_vars() {
