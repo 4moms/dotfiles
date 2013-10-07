@@ -139,6 +139,8 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': ['<c-x>', '<c-cr>', '<c-s>'],
   \ 'AcceptSelection("t")': ['<c-t>'],
 \}
+" Show hidden files by default
+let g:ctrlp_show_hidden = 1
 
 " <leader>n = CtrlP from current file's directory
 nm <leader>n :CtrlPCurFile<CR>
