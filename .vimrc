@@ -1,16 +1,19 @@
+" Encoding (important that this is set early in .vimrc)
+se enc=utf8 " use UTF-8 internally
+se fencs=ucs-bom,utf-8,default,latin1 " detect detectable Unicode, but fall back
+
+" To add driver settings, put a file called driver-$DRIVER.vim in &runtimepath
+cal driver#setup()
+
 " ==== Presentation
 " Info
 syntax on
 set colorcolumn=80
 set laststatus=2
-if exists('&relativenumber')
-  set relativenumber
-  augroup WindowRNU
-    autocmd!
-    autocmd BufWinEnter,WinEnter,FocusGained * setlocal relativenumber
-    autocmd WinLeave,FocusLost * setlocal number
-  augroup END
-endif
+
+" setup relative numbering
+call rnu#setup()
+
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -121,9 +124,9 @@ augroup Programming
 augroup END
 
 " ==== Plugins
-" Powerline
-let g:Powerline_symbols = 'fancy'
-set guifont=Inconsolata\ For\ Powerline
+" Airline (better Powerline)
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
 " Rainbow-Parenthesis
 " they're overriden by syntax, so run this now
 runtime plugin/RainbowParenthsis.vim 
@@ -136,20 +139,19 @@ let g:ctrlp_prompt_mappings = {
   \ 'AcceptSelection("e")': ['<c-x>', '<c-cr>', '<c-s>'],
   \ 'AcceptSelection("t")': ['<c-t>'],
 \}
+" Show hidden files by default
+let g:ctrlp_show_hidden = 1
 
 " <leader>n = CtrlP from current file's directory
 nm <leader>n :CtrlPCurFile<CR>
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
-
-run! plugin/*.vim
-
 " ==== Vundle
-set rtp+=~/.vim/vundle/
-call vundle#rc()
+set rtp+=~/.vim/vundle
+call alternative#vundle#rc()
 filetype plugin indent on     " required!by Vundle
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-fugitive'
@@ -165,9 +167,10 @@ Bundle "honza/vim-snippets"
 Bundle "garbas/vim-snipmate"
 Bundle 'rcyrus/snipmate-snippets-rubymotion'
 Bundle 'mhinz/vim-startify'
-Bundle 'justinxreese/vim-detailed'
+Bundle 'justinxreese/vim-dandelion'
 Bundle 'vim-scripts/bad-whitespace'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'rodjek/vim-puppet'
 "" Colors
 set background=dark
 colorscheme dandelion

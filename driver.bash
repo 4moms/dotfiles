@@ -1,4 +1,5 @@
 drivers_dir=$dotfiles/drivers
+export DRIVERS_DIR="$drivers_dir"
 
 git_set_user() {
   export GIT_AUTHOR_NAME="$1"
@@ -12,7 +13,7 @@ driver_set_vars() {
   username="$1"
   fullname="$2"
   email="${3:-$username@4moms.com}"
-  DRIVER=$username
+  export DRIVER=$username
   git_set_user "$fullname" "$email"
 }
 
