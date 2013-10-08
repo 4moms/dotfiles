@@ -25,6 +25,7 @@ Compiled source #
 *.log
 *.sql
 *.sqlite
+coverage/
 
 # OS generated files #
 ######################
