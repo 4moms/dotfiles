@@ -249,6 +249,10 @@ PROMPT_COMMAND=prompt
 # retain $PROMPT_DIRTRIM directory components when the prompt is too long
 PROMPT_DIRTRIM=3
 
+wedidit() {
+  open ~/dora-we-did-it.webm
+}
+
 # Load completion files from $dotfiles/completion/{function}.bash
 for script in "$dotfiles/completion/"*.bash ; do
   . "$script" > /dev/null 2>&1
