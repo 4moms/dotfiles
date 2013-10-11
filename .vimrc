@@ -130,15 +130,7 @@ let g:airline_right_sep = '◀'
 " Rainbow-Parenthesis
 " they're overriden by syntax, so run this now
 runtime plugin/RainbowParenthsis.vim 
-" Ctrlp 
-" Split instead of replacing pane
-" let g:ctrlp_cmd = 'CtrlPMRU'
-let g:ctrlp_prompt_mappings = {
-  \ 'AcceptSelection("v")': ['<cr>', '<2-LeftMouse>'],
-  \ 'AcceptSelection("h")': ['<c-v>', '<RightMouse>'],
-  \ 'AcceptSelection("e")': ['<c-x>', '<c-cr>', '<c-s>'],
-  \ 'AcceptSelection("t")': ['<c-t>'],
-\}
+" Ctrlp
 " Show hidden files by default
 let g:ctrlp_show_hidden = 1
 
