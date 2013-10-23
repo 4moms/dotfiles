@@ -175,6 +175,9 @@ alias vlm='vim db/migrate/`ls db/migrate | tail -1`'
 # Apps
 alias v='vim'
 alias vi='vim'
+
+alias meat='me athorne'
+
 function onport() {
   (( $# )) || set -- 3000
   lsof -Pni :$*
