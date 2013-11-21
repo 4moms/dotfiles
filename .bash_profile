@@ -231,8 +231,8 @@ prompt() {
   fi
 
   local driver
-  if test -n "$DRIVER" ; then
-    driver="$LIGHT_BLUE($DRIVER)"
+  if test -n "$M_DRIVER" ; then
+    driver="$LIGHT_BLUE($M_DRIVER)"
   else
     driver="${RED}NO DRIVER"
   fi

@@ -13,12 +13,12 @@ driver_set_vars() {
   username="$1"
   fullname="$2"
   email="${3:-$username@4moms.com}"
-  export DRIVER=$username
+  export M_DRIVER=$username
   git_set_user "$fullname" "$email"
 }
 
 driver_reset_vars() {
-  unset DRIVER
+  unset M_DRIVER
   git_set_user "Pairing Station - $(hostname -s)" software@4moms.com
   driver_rm_file
 }
@@ -34,8 +34,8 @@ driver_rm_file() {
 }
 
 driver_save_file() {
-  if [[ -n "$DRIVER" ]] ; then
-    printf '%s' "$DRIVER" > ~/.driver
+  if [[ -n "$M_DRIVER" ]] ; then
+    printf '%s' "$M_DRIVER" > ~/.driver
   fi
 }
 
