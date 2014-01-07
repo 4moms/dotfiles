@@ -168,6 +168,7 @@ alias rpush='rspec --fail-fast && git push'
 # Rails
 alias r='bundle exec rails s'
 alias rspec='rspec -c'
+alias migrate='bundle exec rake db:migrate && bundle exec rake test:prepare'
 # Pow
 alias rpow='touch tmp/restart.txt'
 alias vlm='vim db/migrate/`ls db/migrate | tail -1`'
