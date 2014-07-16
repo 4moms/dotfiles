@@ -154,6 +154,21 @@ alias gpop='git stash pop'
 alias gst='git status'
 alias gstash='git stash'
 
+#vagrant
+alias vup='vagrant up'
+alias vhalt='vagrant halt'
+alias vdest='vagrant destroy'
+alias vrel='vagrant reload'
+alias vsusp='vagrant suspend'
+alias vres='vagrant resume'
+
+alias vst='vagrant status'
+alias vgst='vagrant global-status'
+
+alias vssh='vagrant ssh'
+alias vsnap='vagrant snapshot'
+
+
 # Bundler
 alias be='bundle exec'
 alias rake='be rake'
@@ -180,6 +195,11 @@ alias vi='vim'
 function onport() {
   (( $# )) || set -- 3000
   lsof -Pni :$*
+}
+
+#Change iTerm tab titles
+function title {
+  echo -ne "\033]0;"$*"\007"
 }
 
 ## only binds the given termcap entr(y|ies) to a widget if the terminal supports it
