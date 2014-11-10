@@ -101,10 +101,7 @@ if [ -n "$chruby_defaulted" ] ; then
   warn "chruby version defaulted to $chruby_defaulted: $use_chruby_version"
 fi
 
-. $dotfiles/check-bash-version.bash
 . $dotfiles/app-navigation.bash
-
-running_modern_bash && shopt -s autocd
 
 # History settings
 # ignoreboth=ignoredups:ignorespace
