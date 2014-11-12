@@ -197,33 +197,24 @@ prompt() {
   local RED="\[\033[1;31m\]"
   local no_color='\[\033[0m\]'
 
-  local time="${YELLOW}\d \@$no_color"
-  local whoami="${GREEN}\u@\h$no_color"
-  local dir="${CYAN}\w$no_color"
+  local dir="${YELLOW}\w$no_color"
 
   local branch
   if git rev-parse --git-dir >/dev/null 2>/dev/null ; then
     branch=$(git branch | awk '/^\*/ { print $2 }')
-    branch="${branch:+$LIGHT_BLUE$branch }"
+    branch="${branch:+$GREEN$branch }"
   else
     unset branch
   fi
 
   local driver
   if test -n "$M_DRIVER" ; then
-    driver="$LIGHT_BLUE($M_DRIVER)"
+    driver="$RED($M_DRIVER)"
   else
     driver="${RED}NO DRIVER"
   fi
 
-  local last_fail
-  if test $last_status -ne 0 ; then
-    last_fail="=> ${YELLOW}Err: $last_status${no_color}\n"
-  else
-    unset last_fail
-  fi
-
-  PS1="\n$time $whoami $branch$dir\n$last_fail$driver$no_color \$ "
+  PS1="$driver $dir $branch $no_color\$ "
 }
 PROMPT_COMMAND=prompt
 # retain $PROMPT_DIRTRIM directory components when the prompt is too long
