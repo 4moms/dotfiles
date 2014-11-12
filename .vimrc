@@ -140,32 +140,31 @@ nm <leader>n :CtrlPCurFile<CR>
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 " ==== Vundle
-set rtp+=~/.vim/vundle
+set rtp+=~/Vundle.vim
+call vundle#begin()
 call alternative#vundle#rc()
 filetype plugin indent on     " required!by Vundle
-Bundle 'bling/vim-airline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'tpope/vim-rails.git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Markdown'
-Bundle 'VimClojure'
-Bundle 'ervandew/supertab'
-Bundle 'vim-scripts/Rainbow-Parenthesis'
-Bundle 'tpope/vim-endwise'
-Bundle 'airblade/vim-gitgutter'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/vim-snippets"
-Bundle "garbas/vim-snipmate"
-Bundle 'rcyrus/snipmate-snippets-rubymotion'
-Bundle 'mhinz/vim-startify'
-Bundle 'justinxreese/vim-dandelion'
-Bundle 'vim-scripts/bad-whitespace'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'rodjek/vim-puppet'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-rails.git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tope/vividchalk'
+Plugin 'VimClojure'
+Plugin 'ervandew/supertab'
+Plugin 'vim-scripts/Rainbow-Parenthesis'
+Plugin 'tpope/vim-endwise'
+Plugin 'airblade/vim-gitgutter'
+Plugin "MarcWeber/vim-addon-mw-utils"
+Plugin "tomtom/tlib_vim"
+Plugin "honza/vim-snippets"
+Plugin "garbas/vim-snipmate"
+Plugin 'vim-scripts/bad-whitespace'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'rodjek/vim-puppet'
+call vundle#end()
+
 "" Colors
 set background=dark
-colorscheme dandelion
 let g:solarized_termcolors=256
 
 "" Aliases
