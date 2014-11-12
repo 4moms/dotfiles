@@ -10,39 +10,6 @@ export NODE_PATH=/usr/local/lib/node_modules
 
 export PATH=$HOME/bin:/usr/local/share/npm/bin:/usr/local/share/python:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-# Find chruby share directory
-for dir in {/usr/local,}/opt/chruby/share/chruby ; do
-  if [[ -d "$dir" ]] ; then
-    chruby_dir="$dir"
-    break
-  fi
-done
-
-# If chruby dir was found, set up chruby
-if [ -d "$chruby_dir" ] ; then
-  . $chruby_dir/chruby.sh
-
-  # Set up chruby version from one of three places:
-  # 1. (preferred): file ~/.ruby-version
-  # 2. Last version installed in /opt/rubies
-  # 3. Last resort: hard-coded version
-
-  if [ -f ~/.ruby-version ] ; then
-    use_chruby_version=$(<~/.ruby-version)
-    unset chruby_defaulted
-  elif [ -d /opt/rubies ] ; then
-    use_chruby_version=$(ls -dt1 /opt/rubies/* | awk -F/ '{print $(NF)}' | sed 1q)
-    chruby_defaulted='latest version found'
-  fi
-
-  if [ -z "$use_chruby_version" ] ; then
-    use_chruby_version=1.9.3-p392
-    chruby_defaulted='one that seemed good'
-  fi
-
-  chruby "$use_chruby_version"
-fi
-
 # Settings for interactive shells
 
 # return if not interactive
@@ -97,10 +64,6 @@ fi
 
 export DOTFILES="$dotfiles"
 
-if [ -n "$chruby_defaulted" ] ; then
-  warn "chruby version defaulted to $chruby_defaulted: $use_chruby_version"
-fi
-
 . $dotfiles/app-navigation.bash
 
 # History settings
@@ -115,8 +78,6 @@ HISTFILESIZE=10000000
 
 # only append the history at the end (shouldn't actually be needed - histappend)
 shopt -s histappend
-
-[ -d "$chruby_dir" ] && . $chruby_dir/auto.sh
 
 # Bash
 case "$(uname)" in
