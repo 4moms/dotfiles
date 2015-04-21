@@ -34,8 +34,8 @@ set directory=~/.vim/swap//,/tmp/vim-swap//,/tmp//
 let mapleader = ","
 set mouse=n
 " Find the cursor
-hi CursorLine ctermbg=white ctermfg=NONE guibg=white guifg=none
-hi CursorColumn ctermbg=white ctermfg=NONE guibg=white guifg=none
+hi CursorLine ctermbg=white ctermfg=NONE guibg=white guifg=NONE
+hi CursorColumn ctermbg=white ctermfg=NONE guibg=white guifg=NONE
 nnoremap <Leader>C :set cursorline! cursorcolumn!<CR>
 " Escape with jk mashing
 inoremap jk <Esc>
@@ -158,7 +158,7 @@ Bundle "tomtom/tlib_vim"
 Bundle "honza/vim-snippets"
 Bundle "garbas/vim-snipmate"
 Bundle 'rcyrus/snipmate-snippets-rubymotion'
-Bundle 'mhinz/vim-startify'
+"Bundle 'mhinz/vim-startify'
 Bundle 'justinxreese/vim-dandelion'
 Bundle 'vim-scripts/bad-whitespace'
 Bundle 'scrooloose/nerdcommenter'
@@ -234,3 +234,8 @@ map <leader>f :call RunTestFile()<cr>
 map <leader>t :call RunNearestTest()<cr>
 "run spec for entire app
 map <leader>a :call RunTests('spec')<cr>
+
+
+colorscheme idlefingers
+au VimEnter *  NERDTree
+:au FocusLost * :wa
