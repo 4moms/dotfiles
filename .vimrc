@@ -3,7 +3,6 @@ se enc=utf8 " use UTF-8 internally
 se fencs=ucs-bom,utf-8,default,latin1 " detect detectable Unicode, but fall back
 
 " To add driver settings, put a file called driver-$DRIVER.vim in &runtimepath
-cal driver#setup()
 
 " ==== Presentation
 " Info
@@ -34,8 +33,8 @@ set directory=~/.vim/swap//,/tmp/vim-swap//,/tmp//
 let mapleader = ","
 set mouse=n
 " Find the cursor
-hi CursorLine ctermbg=white ctermfg=NONE guibg=white guifg=none
-hi CursorColumn ctermbg=white ctermfg=NONE guibg=white guifg=none
+hi CursorLine ctermbg=white ctermfg=NONE guibg=white guifg=NONE
+hi CursorColumn ctermbg=white ctermfg=NONE guibg=white guifg=NONE
 nnoremap <Leader>C :set cursorline! cursorcolumn!<CR>
 " Escape with jk mashing
 inoremap jk <Esc>
@@ -79,6 +78,8 @@ augroup END
 
 aug filetypedetect
   au! BufNewFile,BufRead *.markdown,*.md,*.mkd se ft=markdown
+  au! BufNewFile,BufRead *.scala se ft=scala
+  au! BufNewFile,BufRead *.hbs se ft=mustache
 aug END
 
 
@@ -106,7 +107,7 @@ augroup Programming
   autocmd BufWritePost *.js !test -f ~/jslint/jsl && ~/jslint/jsl -conf ~/jslint/jsl.default.conf -nologo -nosummary -process <afile>
   autocmd BufWritePost *.rb !ruby -c <afile>
   autocmd BufWritePost *.rake !ruby -c <afile>
-  autocmd BufWritePost *.erb !erb -x -T '-' <afile> | ruby -c 
+  autocmd BufWritePost *.erb !erb -x -T '-' <afile> | ruby -c
   autocmd BufWritePost *.py !python -c "compile(open('<afile>').read(), '<afile>', 'exec')"
   autocmd BufWritePost *.php !php -d display_errors=on -l <afile>
   autocmd BufWritePost *.inc !php -d display_errors=on -l <afile>
@@ -129,7 +130,7 @@ let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
 " Rainbow-Parenthesis
 " they're overriden by syntax, so run this now
-runtime plugin/RainbowParenthsis.vim 
+runtime plugin/RainbowParenthsis.vim
 " Ctrlp
 " Show hidden files by default
 let g:ctrlp_show_hidden = 1
@@ -148,7 +149,6 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Markdown'
-Bundle 'VimClojure'
 Bundle 'ervandew/supertab'
 Bundle 'vim-scripts/Rainbow-Parenthesis'
 Bundle 'tpope/vim-endwise'
@@ -159,13 +159,14 @@ Bundle "honza/vim-snippets"
 Bundle "garbas/vim-snipmate"
 Bundle 'rcyrus/snipmate-snippets-rubymotion'
 Bundle 'mhinz/vim-startify'
-Bundle 'justinxreese/vim-dandelion'
 Bundle 'vim-scripts/bad-whitespace'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'rodjek/vim-puppet'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'Townk/vim-autoclose'
+Bundle 'mustache/vim-mustache-handlebars'
 "" Colors
-set background=dark
-colorscheme dandelion
+set background=light
+"colorscheme dandelion
 let g:solarized_termcolors=256
 
 "" Aliases
@@ -224,6 +225,12 @@ function! RunWipFile(...)
   exec ":!bundle exec rspec -t @wip %"
 endfunction
 
+function! TrimWhiteSpace()
+      %s/\s\+$//e
+endfunction
+
+autocmd BufWritePre     * :call TrimWhiteSpace()
+
 "run the wip in this file
 map <leader>wf :call RunWipFile()<cr>
 "run feature file
@@ -234,3 +241,5 @@ map <leader>f :call RunTestFile()<cr>
 map <leader>t :call RunNearestTest()<cr>
 "run spec for entire app
 map <leader>a :call RunTests('spec')<cr>
+:set guifont=Bitstream\ Vera\ Sans\ Mono:h14
+colorscheme Railscasts

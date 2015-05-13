@@ -8,7 +8,7 @@ export CVS_RSH=ssh
 export LESS="-RM"
 export NODE_PATH=/usr/local/lib/node_modules
 
-export PATH=$HOME/bin:/usr/local/share/npm/bin:/usr/local/share/python:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=$HOME/bin:$HOME/bin/bin:/usr/local/share/npm/bin:/usr/local/share/python:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Find chruby share directory
 for dir in {/usr/local,}/opt/chruby/share/chruby ; do
@@ -30,8 +30,8 @@ if [ -d "$chruby_dir" ] ; then
   if [ -f ~/.ruby-version ] ; then
     use_chruby_version=$(<~/.ruby-version)
     unset chruby_defaulted
-  elif [ -d /opt/rubies ] ; then
-    use_chruby_version=$(ls -dt1 /opt/rubies/* | awk -F/ '{print $(NF)}' | sed 1q)
+  elif [ -d ~/.rubies ] ; then
+    use_chruby_version=$(ls -dt1 $HOME/.rubies/* | awk -F/ '{print $(NF)}' | sed 1q)
     chruby_defaulted='latest version found'
   fi
 
@@ -86,7 +86,7 @@ fi
 
 if [[ -z "$dotfiles" ]] || [[ ! -d "$dotfiles" ]] ; then
   warn "~/.bash_profile should be a link to .bash_profile in the dotfiles repo"
-  dotfiles=$HOME/github/4moms/dotfiles
+  dotfiles=$HOME/Code/dotfiles
 fi
 
 # Finish if we couldn't find our root directory
@@ -132,7 +132,7 @@ alias l=ll
 alias f='find . -name'
 
 # Git
-alias gg='git status'
+alias gg='git grep'
 alias gs='git status'
 alias gb='git branch -va'
 alias gcm='git commit -m'
@@ -153,10 +153,17 @@ alias gls='git ls-files'
 alias gpop='git stash pop'
 alias gst='git status'
 alias gstash='git stash'
+alias gl='git log'
+alias ga='git add .'
+alias gs='git status'
+alias gka='gitk --all'
+alias gcm='git commit -m'
+alias gcem='git commit -em'
+alias gc='git commit -em'
 
 # Bundler
 alias be='bundle exec'
-alias rake='be rake'
+# alias rake='be rake'
 
 # Rspec
 alias respect='bundle exec rspec'
@@ -245,7 +252,7 @@ prompt() {
     unset last_fail
   fi
 
-  PS1="\n$time $whoami $branch$dir\n$last_fail$driver$no_color \$ "
+  PS1="\n$time $whoami $branch$dir\n$last_fail$no_color\$ "
 }
 PROMPT_COMMAND=prompt
 # retain $PROMPT_DIRTRIM directory components when the prompt is too long
@@ -261,4 +268,8 @@ for script in "$dotfiles/completion/"*.bash ; do
 done
 
 # Pair-programming "driver" functions
-. $dotfiles/driver.bash
+#. $dotfiles/driver.bash
+alias burner='git branch'
+alias lunch="open /Volumes/4moms/Company\ Related/LUNCH\ MENUS/"
+alias ghist='for branch in `git branch -r | grep -v HEAD`;do echo -e `git show --format="%ci %cr" $branch | head -n 1` \\t$branch; done | sort -r'
+
