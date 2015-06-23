@@ -1,0 +1,58 @@
+alias ll="ls $ls_options"
+alias l=ll
+alias f='find . -name'
+
+# Git
+alias changes='git diff --numstat --shortstat start'
+alias gb='git branch'
+alias gap='git add -p'
+alias gco='git checkout'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gka='gitk --all'
+alias gls='git ls-files'
+alias gpop='git stash pop'
+alias gstash='git stash'
+alias gl='git log'
+alias ga='git add .'
+alias gs='git status'
+alias gka='gitk --all'
+alias gca='git commit --amend'
+alias gcm='git commit -m'
+alias gc='git commit -em'
+alias burner='git branch'
+alias ghist='for branch in `git branch -r | grep -v HEAD`;do echo -e `git show --format="%ci %cr" $branch | head -n 1` \\t$branch; done | sort -r'
+alias gcd='cd "$(git rev-parse --show-toplevel)"'
+
+# Bundler
+alias be='bundle exec'
+
+# Rspec
+alias respect='bundle exec rspec'
+alias ber='bundle exec rspec'
+alias wipit='be rspec -t @wip'
+
+# Run the specs and push if successful
+alias rpush='rspec --fail-fast && git push'
+
+# Rails
+alias r='bundle exec rails s'
+alias rspec='rspec -c'
+alias migrate='bundle exec rake db:migrate && bundle exec rake test:prepare'
+
+# Pow
+alias rpow='touch tmp/restart.txt'
+alias vlm='vim db/migrate/`ls db/migrate | tail -1`'
+
+# Apps
+alias v='mvim'
+alias vi='vim'
+alias vim='vim'
+
+# Not really useful anymore
+alias lunch="open /Volumes/4moms/Company\ Related/LUNCH\ MENUS/"
+
+# Ceedling
+alias rr="rake release"
+alias rta="rake test:all"
+alias db="rr; arm-none-eabi-gdb"

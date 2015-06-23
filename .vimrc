@@ -2,8 +2,6 @@
 se enc=utf8 " use UTF-8 internally
 se fencs=ucs-bom,utf-8,default,latin1 " detect detectable Unicode, but fall back
 
-" To add driver settings, put a file called driver-$DRIVER.vim in &runtimepath
-
 " ==== Presentation
 " Info
 syntax on
@@ -13,15 +11,10 @@ set laststatus=2
 " setup relative numbering
 call rnu#setup()
 
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-autocmd BufWinLeave * call clearmatches()
 " Do an incremental search
 set incsearch
 set hlsearch
+
 " Not sure what this does. Looks important/specific
 if &term == "xterm-color"
   fixdel
@@ -31,7 +24,7 @@ set directory=~/.vim/swap//,/tmp/vim-swap//,/tmp//
 
 " ==== Controls
 let mapleader = ","
-set mouse=n
+set mouse=a
 " Find the cursor
 hi CursorLine ctermbg=white ctermfg=NONE guibg=white guifg=NONE
 hi CursorColumn ctermbg=white ctermfg=NONE guibg=white guifg=NONE
@@ -45,16 +38,22 @@ inoremap kk <Esc>
 set ignorecase
 set smartcase
 
+" get rid of bells, hopefully
+set noeb vb t_vb=
+
+" Save on focus loss
+:au FocusLost * silent! :wa
 
 " ==== Typing
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 set nowrap
 set backspace=2
 set autoindent
 set smartindent
+
 " Special settings for python
 autocmd BufRead,BufNewFile *.py setlocal tabstop=4 expandtab
 " And for ruby
@@ -73,7 +72,7 @@ vnoremap " "zdi"<C-R>z"<ESC>
 filetype on
 " reload vimrc on save
 augroup vimrc
-  autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd BufWritePost .vimrc source $MYVIMRC
 augroup END
 
 aug filetypedetect
@@ -128,12 +127,16 @@ augroup END
 " Airline (better Powerline)
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
+
 " Rainbow-Parenthesis
 " they're overriden by syntax, so run this now
-runtime plugin/RainbowParenthsis.vim
+runtime plugin/RainbowParentheses.vim
+
 " Ctrlp
 " Show hidden files by default
 let g:ctrlp_show_hidden = 1
+"Ctrl P Ignore build and git directories
+let g:ctrlp_custom_ignore = '\v[\/](\.git|build)$'
 
 " <leader>n = CtrlP from current file's directory
 nm <leader>n :CtrlPCurFile<CR>
@@ -150,7 +153,7 @@ Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Markdown'
 Bundle 'ervandew/supertab'
-Bundle 'vim-scripts/Rainbow-Parenthesis'
+Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'airblade/vim-gitgutter'
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -164,9 +167,10 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'Townk/vim-autoclose'
 Bundle 'mustache/vim-mustache-handlebars'
+
 "" Colors
 set background=light
-"colorscheme dandelion
+colorscheme Railscasts
 let g:solarized_termcolors=256
 
 "" Aliases
@@ -229,17 +233,37 @@ function! TrimWhiteSpace()
       %s/\s\+$//e
 endfunction
 
-autocmd BufWritePre     * :call TrimWhiteSpace()
+function! RunCeedlingCurFile()
+  :w
+  exec ":!rake test:pattern[" . expand('%:t') .']'
+endfunction
+
+
+function! RunCeedlingAll()
+  :w
+  exec ":!rake test:all"
+endfunction
+
+"autocmd BufWritePre     * :call TrimWhiteSpace()
+autocmd InsertLeave     * :call TrimWhiteSpace()
 
 "run the wip in this file
 map <leader>wf :call RunWipFile()<cr>
 "run feature file
 map <leader>w :call RunWip()<cr>
 "run spec for current file
-map <leader>f :call RunTestFile()<cr>
+map <leader>f :call RunCeedlingCurFile()<cr>
 "run spec for what is under cursor
 map <leader>t :call RunNearestTest()<cr>
 "run spec for entire app
-map <leader>a :call RunTests('spec')<cr>
-:set guifont=Bitstream\ Vera\ Sans\ Mono:h14
-colorscheme Railscasts
+map <leader>a :call RunCeedlingAll()<cr>
+"keymaping for nerd tree
+map <leader>bt :NERDTreeToggle<cr>
+:set guifont=Bitstream\ Vera\ Sans\ Mono:h13
+
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+

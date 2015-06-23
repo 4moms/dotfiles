@@ -24,7 +24,7 @@ if [ -d "$chruby_dir" ] ; then
 
   # Set up chruby version from one of three places:
   # 1. (preferred): file ~/.ruby-version
-  # 2. Last version installed in /opt/rubies
+  # 2. Last version installed in $HOME/.rubies
   # 3. Last resort: hard-coded version
 
   if [ -f ~/.ruby-version ] ; then
@@ -85,7 +85,7 @@ if [[ -L "$HOME/.bash_profile" ]] ; then
 fi
 
 if [[ -z "$dotfiles" ]] || [[ ! -d "$dotfiles" ]] ; then
-  warn "~/.bash_profile should be a link to .bash_profile in the dotfiles repo"
+  #warn "~/.bash_profile should be a link to .bash_profile in the dotfiles repo"
   dotfiles=$HOME/Code/dotfiles
 fi
 
@@ -101,10 +101,9 @@ if [ -n "$chruby_defaulted" ] ; then
   warn "chruby version defaulted to $chruby_defaulted: $use_chruby_version"
 fi
 
-. $dotfiles/check-bash-version.bash
 . $dotfiles/app-navigation.bash
 
-running_modern_bash && shopt -s autocd
+#running_modern_bash && shopt -s autocd
 
 # History settings
 # ignoreboth=ignoredups:ignorespace
@@ -126,63 +125,6 @@ case "$(uname)" in
   *Darwin*) ls_options=-lahG ;;
   *) ls_options=-lah ;;
 esac
-
-alias ll="ls $ls_options"
-alias l=ll
-alias f='find . -name'
-
-# Git
-alias gg='git grep'
-alias gs='git status'
-alias gb='git branch -va'
-alias gcm='git commit -m'
-alias gf='git fetch'
-alias gp='git pull'
-alias changes='git diff --numstat --shortstat start'
-alias standup='git log --since yesterday --author `git config user.email` --pretty=short'
-
-# bhaskell git
-alias g=git
-alias gap='git add -p'
-alias gci='git commit'
-alias gco='git checkout'
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias gka='gitk --all'
-alias gls='git ls-files'
-alias gpop='git stash pop'
-alias gst='git status'
-alias gstash='git stash'
-alias gl='git log'
-alias ga='git add .'
-alias gs='git status'
-alias gka='gitk --all'
-alias gcm='git commit -m'
-alias gcem='git commit -em'
-alias gc='git commit -em'
-
-# Bundler
-alias be='bundle exec'
-# alias rake='be rake'
-
-# Rspec
-alias respect='bundle exec rspec'
-alias ber='bundle exec rspec'
-alias wipit='be rspec -t @wip'
-# Run the specs and push if successful
-alias rpush='rspec --fail-fast && git push'
-
-# Rails
-alias r='bundle exec rails s'
-alias rspec='rspec -c'
-alias migrate='bundle exec rake db:migrate && bundle exec rake test:prepare'
-# Pow
-alias rpow='touch tmp/restart.txt'
-alias vlm='vim db/migrate/`ls db/migrate | tail -1`'
-
-# Apps
-alias v='vim'
-alias vi='vim'
 
 function onport() {
   (( $# )) || set -- 3000
@@ -267,9 +209,4 @@ for script in "$dotfiles/completion/"*.bash ; do
   . "$script" > /dev/null 2>&1
 done
 
-# Pair-programming "driver" functions
-#. $dotfiles/driver.bash
-alias burner='git branch'
-alias lunch="open /Volumes/4moms/Company\ Related/LUNCH\ MENUS/"
-alias ghist='for branch in `git branch -r | grep -v HEAD`;do echo -e `git show --format="%ci %cr" $branch | head -n 1` \\t$branch; done | sort -r'
-
+source "$dotfiles/.aliases"
