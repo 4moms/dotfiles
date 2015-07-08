@@ -229,5 +229,6 @@ for script in "$dotfiles/completion/"*.bash ; do
   . "$script" > /dev/null 2>&1
 done
 
+source /usr/local/opt/chruby/share/chruby/chruby.sh
 # Pair-programming "driver" functions
 . $dotfiles/driver.bash
