@@ -11,9 +11,6 @@ syntax on
 set colorcolumn=80
 set laststatus=2
 
-" setup relative numbering
-call rnu#setup()
-
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
@@ -34,9 +31,6 @@ set directory=~/.vim/swap//,/tmp/vim-swap//,/tmp//
 let mapleader = ","
 set mouse=n
 " Find the cursor
-hi CursorLine ctermbg=white ctermfg=NONE guibg=white guifg=none
-hi CursorColumn ctermbg=white ctermfg=NONE guibg=white guifg=none
-nnoremap <Leader>C :set cursorline! cursorcolumn!<CR>
 " Escape with jk mashing
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -136,33 +130,34 @@ let g:ctrlp_show_hidden = 1
 
 " <leader>n = CtrlP from current file's directory
 nm <leader>n :CtrlPCurFile<CR>
+nm <leader>nt :NERDTree<CR>
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 " ==== Vundle
-set rtp+=~/Vundle.vim
+
+set nocompatible
+filetype off
+set rtp+=~/github/4moms/dotfiles/.vim/bundle/Vundle.vim
+
 call vundle#begin()
 call alternative#vundle#rc()
-filetype plugin indent on     " required!by Vundle
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-rails.git'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tope/vividchalk'
 Plugin 'VimClojure'
 Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/Rainbow-Parenthesis'
 Plugin 'tpope/vim-endwise'
 Plugin 'airblade/vim-gitgutter'
-Plugin "MarcWeber/vim-addon-mw-utils"
-Plugin "tomtom/tlib_vim"
-Plugin "honza/vim-snippets"
-Plugin "garbas/vim-snipmate"
-Plugin 'vim-scripts/bad-whitespace'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'rodjek/vim-puppet'
+Plugin 'scrooloose/nerdtree'
+Plugin 'shinzui/vim-idleFingers'
 call vundle#end()
 
+filetype plugin indent on     " required!by Vundle
 "" Colors
 set background=dark
 let g:solarized_termcolors=256
@@ -233,3 +228,8 @@ map <leader>f :call RunTestFile()<cr>
 map <leader>t :call RunNearestTest()<cr>
 "run spec for entire app
 map <leader>a :call RunTests('spec')<cr>
+
+:au FocusLost * :wa
+let g:NERDTreeDirArrows=0
+colorscheme idleFingers
+set number
